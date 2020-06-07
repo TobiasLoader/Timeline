@@ -5,6 +5,8 @@ let earth;
 var people;
 let ground;
 let features;
+let boats;
+let treetops;
 
 let control;
 
@@ -15,6 +17,8 @@ let squareSize;
 let sideX;
 let startScrollDist;
 let groundWidth;
+let toby;
+let tobySwap;
 
 function setup() {
   	W = window.innerWidth;
@@ -29,7 +33,7 @@ function setup() {
   	setupClouds();
   	setupEarth();
   	setupSky();
-  	setupLandMarks();
+  	setupAccessories();
  }
 
 function getRndBias(min, max, bias, influence) {
@@ -42,11 +46,15 @@ function getRndBias(min, max, bias, influence) {
 function draw() {
 	cursor(cursorType);
 	cursorType = 'default';
+	movePeople();
 	drawSky();
+	drawClouds();
 	drawEarth();
 	drawPeople();
 	drawFeatures();
-	drawClouds();
+	drawAccessories();
+	
+	
 }
 
 

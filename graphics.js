@@ -480,3 +480,61 @@ class Cloud {
 		}
 	}
 }
+
+class Boat {
+	constructor (x,y,w,h,start,stop){
+		this.x = x;
+		this.y = y;
+		this.w = w;
+		this.h = h;
+		this.start = start;
+		this.stop = stop;
+		
+		this.graphicBoat = createGraphics(this.w,this.h);
+		
+		this.graphicBoat.noStroke();
+		this.graphicBoat.fill(110, 81, 47);
+		this.graphicBoat.rect(0,this.h/2,this.w,this.h/2,2);
+		this.graphicBoat.rect(0,0,this.w/5,this.h,2);
+		this.graphicBoat.rect(4*this.w/5,0,this.w/5,this.h,2);
+	}
+	
+	draw(){
+		imageMode(CENTER);
+		image(this.graphicBoat,this.x-sideX+this.w/2,this.y);
+		stroke(0,0,0);
+		line(this.x+this.w-sideX,this.y-this.h/4,this.stop-sideX,this.y-this.h/4);
+		noStroke();
+		fill(110, 81, 47);
+		rect(this.stop-sideX,this.y-this.h,10,this.h);
+	}
+	
+	update(){
+		if (toby.x>this.start+this.w/2 && toby.x<this.stop-this.w/2){
+			this.x = toby.x-this.w/2;
+		}
+	}
+}
+
+class Treetop {
+	constructor (x,y,w,h,start,stop){
+		this.x = x;
+		this.y = y;
+		this.w = w;
+		this.h = h;
+		
+		this.graphic = createGraphics(this.w,this.h);
+		this.graphic.noStroke();
+		this.graphic.rectMode(CENTER);
+		this.graphic.fill(94, 133, 104,220);
+		this.graphic.rect(this.w/2,this.h/2,w/2,h/2,5);
+		for (var i=0; i<10; i+=1){
+			this.graphic.rect(random(this.w/4,3*this.w/4),random(this.h/4,3*this.h/4),random(2*this.w/5,this.w/2),random(2*this.h/5,this.h/2),5);
+		}
+	}
+	
+	draw(){
+		imageMode(CENTER);
+		image(this.graphic,this.x-sideX,this.y);
+	}
+}
