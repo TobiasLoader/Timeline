@@ -435,6 +435,67 @@ class Dog {
 	}
 }
 
+class Sheep {
+	constructor (w, h, colour1, colour2){
+		this.w = w;
+		this.h = h;
+		this.col = colour1;
+		this.col2 = colour2;
+		this.type = 'Sheep';
+	}
+	
+	build(){
+		this.body = {
+			front:createGraphics(this.w,this.h),
+			left1:createGraphics(this.w,this.h),
+			left2:createGraphics(this.w,this.h),
+			left3:createGraphics(this.w,this.h),
+			leftJ:createGraphics(this.w,this.h),
+			right1:createGraphics(this.w,this.h),
+			right2:createGraphics(this.w,this.h),
+			right3:createGraphics(this.w,this.h),
+			rightJ:createGraphics(this.w,this.h)
+		};
+		
+		
+		this.body.left1.fill(this.col2);
+		this.body.left1.stroke(this.col);
+		this.body.left1.rect(0.30*this.w,0.70*this.h,0.05*this.w,0.30*this.h,2);
+		this.body.left1.rect(0.34*this.w,0.70*this.h,0.05*this.w,0.30*this.h,2);
+		this.body.left1.rect(0.60*this.w,0.70*this.h,0.05*this.w,0.30*this.h,2);
+		this.body.left1.rect(0.64*this.w,0.70*this.h,0.05*this.w,0.30*this.h,2);
+		this.body.left1.noStroke();
+		this.body.left1.fill(this.col);
+		this.body.left1.rect(0.20*this.w,0.20*this.h,0.60*this.w,0.60*this.h,5);
+		this.body.left1.rect(0.13*this.w,0.30*this.h,0.10*this.w,0.12*this.h,5);
+		this.body.left1.rect(0.13*this.w,0.30*this.h,0.05*this.w,0.32*this.h,5);
+		this.body.left1.fill(this.col2);
+		this.body.left1.rect(0.66*this.w,0.10*this.h,0.25*this.w,0.40*this.h,2);
+		this.body.left1.stroke(this.col);
+		this.body.left1.rect(0.68*this.w,0.14*this.h,0.06*this.w,0.12*this.h,2);
+	  	this.body.left1.stroke(this.col);
+	  	this.body.left1.strokeWeight(4);
+	  	this.body.left1.point(0.85*this.w,0.27*this.h);
+	  	
+	  	this.body.front = this.body.left1;
+	  	this.body.left2 = this.body.left1;
+	  	this.body.left3 = this.body.left1;
+	  	this.body.leftJ = this.body.left1;
+	  	
+	  	this.body.right1.push();
+	  	this.body.right1.translate(this.w/2,0);
+	  	this.body.right1.scale(-1,1);
+	  	this.body.right1.translate(-this.w/2,0);
+	  	this.body.right1.copy(this.body.left1,0,0,this.w,this.h,0,0,this.w,this.h);
+	  	this.body.right1.pop();
+	  	
+	  	this.body.right2 = this.body.right1;
+	  	this.body.right3 = this.body.right1;
+	  	this.body.rightJ = this.body.right1;
+	}
+}
+
+
 
 class Cloud {
 	constructor (x,y,w,h,vx,vy,col,n){
@@ -480,6 +541,39 @@ class Cloud {
 		}
 	}
 }
+
+class Flag {
+	constructor (x,y,country){
+		this.x = x;
+		this.y = y;
+		
+		this.graphic = createGraphics(3*squareSize,3*squareSize);
+		this.graphic.noStroke();
+		if (country==='e'){
+			this.graphic.fill(242, 242, 242);
+			this.graphic.rect(0,0,squareSize,squareSize);
+			this.graphic.rect(2*squareSize,0,squareSize,squareSize);
+			this.graphic.rect(0,2*squareSize,squareSize,squareSize);
+			this.graphic.rect(2*squareSize,2*squareSize,squareSize,squareSize);
+			this.graphic.fill(219, 113, 92);
+			this.graphic.rect(squareSize,0,squareSize,3*squareSize);
+			this.graphic.rect(0,squareSize,3*squareSize,squareSize);
+		} else if (country==='f'){
+			this.graphic.fill(79, 147, 219);
+			this.graphic.rect(0,0,squareSize,3*squareSize);
+			this.graphic.fill(242, 242, 242);
+			this.graphic.rect(squareSize,0,squareSize,3*squareSize);
+			this.graphic.fill(219, 113, 92);
+			this.graphic.rect(2*squareSize,0,squareSize,3*squareSize);
+		}
+	}
+	
+	draw(){
+		imageMode(CENTER);
+		image(this.graphic,this.x-sideX-3*squareSize/2,this.y+3*squareSize/2);
+	}
+}
+
 
 class Boat {
 	constructor (x,y,w,h,start,stop){
@@ -527,7 +621,7 @@ class Treetop {
 		this.graphic.noStroke();
 		this.graphic.rectMode(CENTER);
 		this.graphic.fill(94, 133, 104,220);
-		this.graphic.rect(this.w/2,this.h/2,w/2,h/2,5);
+		this.graphic.rect(this.w/2,this.h/2,this.w/2,this.h/2,5);
 		for (var i=0; i<10; i+=1){
 			this.graphic.rect(random(this.w/4,3*this.w/4),random(this.h/4,3*this.h/4),random(2*this.w/5,this.w/2),random(2*this.h/5,this.h/2),5);
 		}
@@ -536,5 +630,77 @@ class Treetop {
 	draw(){
 		imageMode(CENTER);
 		image(this.graphic,this.x-sideX,this.y);
+	}
+}
+
+class Notice {
+	constructor (x,y,w,h,title,content1,content2){
+		this.x = x;
+		this.finalY = y;
+		this.w = w;
+		this.h = h;
+		this.y = y-h;
+		
+		this.graphic = createGraphics(this.w,this.h);
+		this.graphic.stroke(163, 147, 139);
+		this.graphic.line(this.w/4,0,this.w/4,this.h/2);
+		this.graphic.line(3*this.w/4,0,3*this.w/4,this.h/2);
+		this.graphic.rectMode(CENTER);
+		this.graphic.fill(250, 249, 240);
+		this.graphic.rect(this.w/2,3*this.h/4,this.w-2,this.h/2-2,2);
+		this.graphic.fill(77, 69, 65);
+		this.graphic.noStroke();
+		this.graphic.textAlign(CENTER,CENTER);
+		this.graphic.textFont('Inconsolata', 18);
+		if (content2){
+			this.graphic.text(title,this.w/2,21*this.h/32);
+			this.graphic.textSize(13);
+			this.graphic.text(content1,this.w/2,51*this.h/64);
+			this.graphic.text(content2,this.w/2,57*this.h/64);
+		} else if (content1){
+			this.graphic.text(title,this.w/2,11*this.h/16);
+			this.graphic.textSize(13);
+			this.graphic.text(content1,this.w/2,27*this.h/32);
+		} else {
+			this.graphic.text(title,this.w/2,3*this.h/4);
+		}
+	}
+	
+	draw(){
+		imageMode(CENTER);
+		image(this.graphic,this.x-sideX,this.y);
+	}
+	
+	move(){
+		if (toby.x>this.x && this.y+squareSize<this.finalY){
+			this.y+=squareSize/2;
+		}
+	}
+}
+
+class Writing {
+	constructor (x,y,w,h,title,items){
+		this.x = x;
+		this.y = y;
+		this.w = w;
+		this.h = h;
+		
+		this.graphic = createGraphics(this.w,this.h);
+		this.graphic.fill(77, 69, 65);
+		this.graphic.noStroke();
+		this.graphic.textAlign(CENTER,CENTER);
+		this.graphic.textFont('Inconsolata', 20);
+		this.graphic.text(title,this.w/2,this.h/4);
+		this.graphic.textSize(14);
+		this.graphic.textAlign(LEFT);
+		for (var i=0; i<items.length; i+=1){
+			this.graphic.text(items[i],this.w/4,this.h/2+(this.h/2 + 5)*i/items.length);
+		}
+	}
+	
+	draw(){
+		imageMode(CORNER);
+		image(this.graphic,this.x-sideX,this.y);
+		imageMode(CENTER);
 	}
 }
