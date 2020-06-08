@@ -416,7 +416,7 @@ function drawFeatures(){
 }
 
 function progressBar(){
-	rectMode(LEFT);
+	rectMode(CORNER);
 	noStroke();
 	fill(250, 249, 240);
 	rect(W-squareSize,0,squareSize,H);

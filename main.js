@@ -25,6 +25,7 @@ let toby;
 let tobySwap;
 
 let loaded;
+let loadtime;
 let graphicsCreated;
 
 function setup() {
@@ -37,15 +38,27 @@ function setup() {
   	textFont('Inconsolata',20);
   	cursorType = 'default';
   	loaded = false;
+  	loadtime = 2;
   	graphicsCreated = false;
   	setupScene();
-  	buildGraphics();
- }
+  	
+}
+
+function loading(){
+	background(250, 249, 240);
+  	rectMode(CENTER);
+  	fill(9, 168, 176);
+  	noStroke();
+  	push();
+  	translate(W/2,H/2);
+  	rotate(2*360*millis()/(loadtime*1000));
+  	rect(0,0,squareSize,squareSize,2);
+  	pop();
+}
  
 function buildGraphics(){
-// 	print(true)
+	
   	setupPeople();
-  	
   	setupClouds();
   	setupEarth();
   	setupSky();
@@ -62,17 +75,18 @@ function getRndBias(min, max, bias, influence) {
 
 function draw() {
 	
-/*
-	if (millis()>2000){
+	if (millis()>loadtime*1000 && !loaded ){
+		buildGraphics();
 		loaded = true;
-	} else if (millis()>1000){
+	}/*
+ else if (millis()>1000){
 		if (!graphicsCreated){
 			print(true)
 			buildGraphics();
 		}
 	}
 */
-// 	if (loaded){
+	if (loaded){
 		
 // 		print(people)
 		cursor(cursorType);
@@ -85,7 +99,9 @@ function draw() {
 		drawFeatures();
 		drawAccessories();
 		progressBar();
-// 	}
+	} else {
+		loading();
+	}
 }
 
 
