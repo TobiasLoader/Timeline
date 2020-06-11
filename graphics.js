@@ -532,12 +532,23 @@ class Cloud {
 	}
 	
 	update(){
+/*
+		if (toby.vx<0){
+			this.x -= this.vx;
+		} else {
+			this.x += this.vx;
+		}
+*/
 		this.x += this.vx;
 		this.y += this.vy;
 				
 		if (this.x - this.w - 1.1/2*this.w>W){
 			this.vy = -this.vy;
 			this.x = -this.w- 1.1/2*this.w;
+		}
+		if (this.x + this.w + 1.1/2*this.w<0){
+			this.vy = -this.vy;
+			this.x = W+this.w+1.1/2*this.w;
 		}
 	}
 }
@@ -639,36 +650,39 @@ class Notice {
 		this.finalY = y;
 		this.w = w;
 		this.h = h;
-		this.y = y-h;
+		this.y = -h;
 		
 		this.graphic = createGraphics(this.w,this.h);
 		this.graphic.stroke(163, 147, 139);
-		this.graphic.line(this.w/4,0,this.w/4,this.h/2);
-		this.graphic.line(3*this.w/4,0,3*this.w/4,this.h/2);
-		this.graphic.rectMode(CENTER);
+// 		this.graphic.line(this.w/4,0,this.w/4,this.h/2);
+// 		this.graphic.line(3*this.w/4,0,3*this.w/4,this.h/2);
+		this.graphic.rectMode(CORNER);
 		this.graphic.fill(250, 249, 240);
-		this.graphic.rect(this.w/2,3*this.h/4,this.w-2,this.h/2-2,2);
+		this.graphic.rect(1,1,this.w-2,this.h-2,2);
 		this.graphic.fill(77, 69, 65);
 		this.graphic.noStroke();
 		this.graphic.textAlign(CENTER,CENTER);
 		this.graphic.textFont('Inconsolata', 18);
 		if (content2){
-			this.graphic.text(title,this.w/2,21*this.h/32);
+			this.graphic.text(title,this.w/2,9*this.h/32);
 			this.graphic.textSize(13);
-			this.graphic.text(content1,this.w/2,51*this.h/64);
-			this.graphic.text(content2,this.w/2,57*this.h/64);
+			this.graphic.text(content1,this.w/2,18*this.h/32);
+			this.graphic.text(content2,this.w/2,23*this.h/32);
 		} else if (content1){
-			this.graphic.text(title,this.w/2,11*this.h/16);
+			this.graphic.text(title,this.w/2,11*this.h/32);
 			this.graphic.textSize(13);
-			this.graphic.text(content1,this.w/2,27*this.h/32);
+			this.graphic.text(content1,this.w/2,21*this.h/32);
 		} else {
-			this.graphic.text(title,this.w/2,3*this.h/4);
+			this.graphic.text(title,this.w/2,this.h/2);
 		}
 	}
 	
 	draw(){
 		imageMode(CENTER);
 		image(this.graphic,this.x-sideX,this.y);
+		stroke(163, 147, 139);
+		line(this.x-sideX-this.w/4,0,this.x-sideX-this.w/4,this.y-this.h/2);
+		line(this.x-sideX+this.w/4,0,this.x-sideX+this.w/4,this.y-this.h/2);
 	}
 	
 	move(){
@@ -679,7 +693,7 @@ class Notice {
 }
 
 class Writing {
-	constructor (x,y,w,h,title,items){
+	constructor (x,y,w,h,title,items,fontSize){
 		this.x = x;
 		this.y = y;
 		this.w = w;
@@ -689,7 +703,12 @@ class Writing {
 		this.graphic.fill(77, 69, 65);
 		this.graphic.noStroke();
 		this.graphic.textAlign(CENTER,CENTER);
-		this.graphic.textFont('Inconsolata', 20);
+		if (fontSize){
+			this.graphic.textFont('Inconsolata', fontSize);
+		} else {
+			this.graphic.textFont('Inconsolata', 20);
+		}
+		
 		this.graphic.text(title,this.w/2,this.h/4);
 		this.graphic.textSize(14);
 		this.graphic.textAlign(LEFT);
@@ -701,6 +720,58 @@ class Writing {
 	draw(){
 		imageMode(CORNER);
 		image(this.graphic,this.x-sideX,this.y);
+		imageMode(CENTER);
+	}
+}
+
+class Typing {
+	constructor (x,y,w,h,words,fontSize,col){
+		this.x = x;
+		this.y = y;
+		this.w = w;
+		this.h = h;
+		this.col = col;
+		this.words = words;
+		this.orginalWord = createGraphics(this.w,this.h);
+		if (fontSize){
+			this.orginalWord.textFont('Inconsolata', fontSize);
+		} else {
+			this.orginalWord.textFont('Inconsolata', 20);
+		}
+		this.leftStart = this.w/2-this.orginalWord.textWidth(words)/2;
+		this.wordsLength = words.length;
+		this.graphic = [];
+		
+		for (var i=0; i<this.wordsLength; i+=1){
+			this.graphic.push(createGraphics(this.w,this.h));
+			this.graphic[i].fill(this.col);
+			this.graphic[i].noStroke();
+			this.graphic[i].textAlign(LEFT,CENTER);
+			if (fontSize){
+				this.graphic[i].textFont('Inconsolata', fontSize);
+			} else {
+				this.graphic[i].textFont('Inconsolata', 20);
+			}
+			this.graphic[i].text(words.slice(0,i+1),this.leftStart,this.h/2);
+			this.graphic[i].rightEnd = this.x+this.leftStart+this.graphic[i].textWidth(words.slice(0,i+1));
+		}
+		
+	}
+	
+	draw(){
+		imageMode(CORNER);
+		rectMode(CENTER);
+		for (var j=this.wordsLength-1; j>0; j-=1){
+			if (toby.x-squareSize/2>this.graphic[j].rightEnd){
+				image(this.graphic[j],this.x-sideX,this.y);
+				if (round(2*millis()/1000)%2){
+					noStroke();
+					fill(this.col);
+					rect(this.graphic[j].rightEnd+20-sideX,this.y+this.h/2,10,30);
+				}
+				break;
+			}
+		}
 		imageMode(CENTER);
 	}
 }

@@ -10,6 +10,8 @@ let treetops;
 let notices;
 let flags;
 let writings;
+let typings;
+let noticeHeight;
 
 let startAnim;
 let control;
@@ -22,8 +24,9 @@ let sideX;
 let startScrollDist;
 let groundWidth;
 let toby;
-let tobySwap;
+let milestones;
 
+let lastloadMillis;
 let loaded;
 let loadtime;
 let graphicsCreated;
@@ -38,10 +41,11 @@ function setup() {
   	textFont('Inconsolata',20);
   	cursorType = 'default';
   	loaded = false;
-  	loadtime = 2;
+  	loadtime = 3;
+  	lastloadMillis = 0;
   	graphicsCreated = false;
   	setupScene();
-  	
+  	setupPeople();
 }
 
 function loading(){
@@ -51,14 +55,14 @@ function loading(){
   	noStroke();
   	push();
   	translate(W/2,H/2);
-  	rotate(2*360*millis()/(loadtime*1000));
-  	rect(0,0,squareSize,squareSize,2);
+  	rotate(0.75*360*millis()/(1000));
+  	rect(0,0,1.5*squareSize,1.5*squareSize,4);
   	pop();
 }
  
 function buildGraphics(){
 	
-  	setupPeople();
+  	
   	setupClouds();
   	setupEarth();
   	setupSky();
@@ -75,7 +79,7 @@ function getRndBias(min, max, bias, influence) {
 
 function draw() {
 	
-	if (millis()>loadtime*1000 && !loaded ){
+	if (millis()-lastloadMillis>loadtime*1000 && !loaded ){
 		buildGraphics();
 		loaded = true;
 	}/*
@@ -99,6 +103,8 @@ function draw() {
 		drawFeatures();
 		drawAccessories();
 		progressBar();
+// 		print(sideX, )
+// print(toby.x>groundWidth-(W-(toby.x-sideX)))
 	} else {
 		loading();
 	}
@@ -108,5 +114,20 @@ function draw() {
 window.onresize = function() {
 	resizeCanvas(windowWidth, windowHeight);
 	W = windowWidth;
-	H = windowHeight
+	H = windowHeight;
+// 	setupScene();
+	lastloadMillis = millis();
+	loaded = false;
+	ground = H-9*squareSize;
+  	startScrollDist = 2*W/5;
+  	
+  	if (toby.x-W/2>0 && sideX<groundWidth-W) {
+	  	sideX = toby.x-W/2;
+  	} else if (toby.x-W/2<0) {
+	  	sideX = 0;
+  	} else if (sideX>groundWidth-W) {
+	  	sideX = groundWidth-W;
+  	}
+  	
+// 	buildGraphics();
 };
