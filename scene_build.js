@@ -49,10 +49,13 @@ function setupEarth(){
 			if (locationFeatures(x,y)==='GROUND'){
 				colDiff = random(-10,10);
 				if (random(0,1)<0.2*(1 - 2*abs(y-(H+earthFloor(x))/2)/(H-earthFloor(x)))){
+					// SOIL / MUD
 					earth.fill(158+colDiff, 145+colDiff, 109+colDiff);
 				} else if (random(0,1)<1*sq(sq((y-earthFloor(x))/(H-earthFloor(x))))){
+					// ROCK
 					earth.fill(146+colDiff, 161+colDiff, 150+colDiff);
 				} else {
+					// GRASS
 					earth.fill(120+colDiff, 176+colDiff, 121+colDiff);
 				}
 				earth.rect(x,y+squareSize/2,squareSize,squareSize);
@@ -102,6 +105,9 @@ function buildFeatures(X,Y){
 	} else if (featureType === 'PAPER'){
 		features.fill(240+colDiff, 245+colDiff, 225+colDiff);
 		features.rect(X,Y+squareSize/2,squareSize,squareSize);
+	} else if (featureType === 'ROCK'){
+		features.fill(146+colDiff, 161+colDiff, 150+colDiff);
+		features.rect(X,Y+squareSize/2,squareSize,squareSize);
 	}
 }
 
@@ -136,7 +142,13 @@ function progressBar(){
 	pop();
 }
 
-function drawAccessories(){
+function drawAccessoriesBeforePeople(){
+	for (var i in milestones){
+		milestones[i].draw();
+	}
+}
+
+function drawAccessoriesAfterPeople(){
 	for (var i in boats){
 		boats[i].update();
 		boats[i].draw();
@@ -156,5 +168,15 @@ function drawAccessories(){
 	}
 	for (var i in typings){
 		typings[i].draw();
+	}
+	for (var i in specialClouds){
+		specialClouds[i].draw();
+	}
+	for (var i in waterDroplets){
+		waterDroplets[i].draw();
+	}
+	for (var i in fish){
+		fish[i].update();
+		fish[i].draw();
 	}
 }

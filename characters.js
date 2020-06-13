@@ -70,39 +70,39 @@ function setupPeople(){
 	  	'Brother': new Person(
 	  		'Brother',
 	  		new Human(60,120,color(111, 179, 111)),
-	  		milestones[3]+20*squareSize,
+	  		milestone[3]+20*squareSize,
 	  		ground-75,
 	  		9),
 	  	'Dog': new Person(
 	  		'Dog',
 	  		new Dog(140,60,color(158, 122, 74)), //199, 177, 135
-	  		milestones[3]+45*squareSize,
+	  		milestone[3]+45*squareSize,
 	  		ground-30,
 	  		7),
 	  	'Sheep1': new Person(
 	  		'Sheep1',
 	  		new Sheep(100,60,color(84, 84, 80),color(227, 226, 218)), //199, 177, 135
-	  		milestones[5]+24*squareSize, // 200
+	  		milestone[5]+24*squareSize, // 200
 	  		0,
 	  		7),
 	  	'Sheep2': new Person(
 	  		'Sheep2',
 	  		new Sheep(100,60,color(84, 84, 80),color(227, 226, 218)), //199, 177, 135
-	  		milestones[5]+60*squareSize, // 200
+	  		milestone[5]+60*squareSize, // 200
 	  		0,
 	  		7),
 	  	'Father': new Person(
 	  		'Father',
 	  		new Human(100,160,color(151, 179, 111)),
-	  		milestones[5]+91*squareSize,
+	  		milestone[5]+91*squareSize,
 	  		ground-80,
 	  		7),
   	}
 }
 
 function characterSwap(){
-	for (var i=1; i<milestones.length; i+=1){
-		if (toby.x<milestones[i]){
+	for (var i=1; i<milestone.length; i+=1){
+		if (toby.x<milestone[i]){
 			control = 'Toby'+str(i);
 			break;
 		}
@@ -290,12 +290,12 @@ class Person {
 			}
 		}
 */
-		if (this.name==='Dog' && toby.x>milestones[3]+50*squareSize && toby.x<milestones[3]+75*squareSize && (this.x>=milestones[3]+45*squareSize||toby.vx>0) && (this.x<=milestones[3]+72*squareSize||toby.vx<0)){
+		if (this.name==='Dog' && toby.x>milestone[3]+50*squareSize && toby.x<milestone[3]+75*squareSize && (this.x>=milestone[3]+45*squareSize||toby.vx>0) && (this.x<=milestone[3]+72*squareSize||toby.vx<0)){
 			this.vx = toby.vx;
 		}
 		
 		if (startAnim && this.name==='Toby1'){
-			if (this.x<10*squareSize){
+			if (this.x<milestone[0]+11*squareSize){
 				this.vx = 3;
 			} else {
 				startAnim = false;
@@ -303,7 +303,7 @@ class Person {
 		}
 		
 		if (startAnim && this.name==='Mother'){
-			if (this.x<6*squareSize){
+			if (this.x<milestone[0]+7*squareSize){
 				this.vx = 3;
 			} else {
 				startAnim = false;

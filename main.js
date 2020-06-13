@@ -11,6 +11,10 @@ let notices;
 let flags;
 let writings;
 let typings;
+let milestones;
+let specialClouds;
+let waterDroplets;
+let fish;
 let noticeHeight;
 
 let startAnim;
@@ -24,7 +28,8 @@ let sideX;
 let startScrollDist;
 let groundWidth;
 let toby;
-let milestones;
+let milestone;
+let milestoneAge;
 
 let lastloadMillis;
 let loaded;
@@ -79,32 +84,22 @@ function getRndBias(min, max, bias, influence) {
 
 function draw() {
 	
-	if (millis()-lastloadMillis>loadtime*1000 && !loaded ){
+	if (!loaded && millis()-lastloadMillis>loadtime*1000){
 		buildGraphics();
 		loaded = true;
-	}/*
- else if (millis()>1000){
-		if (!graphicsCreated){
-			print(true)
-			buildGraphics();
-		}
 	}
-*/
 	if (loaded){
-		
-// 		print(people)
 		cursor(cursorType);
 		cursorType = 'default';
 		movePeople();
 		drawSky();
 		drawClouds();
 		drawEarth();
+		drawAccessoriesBeforePeople();
 		drawPeople();
 		drawFeatures();
-		drawAccessories();
+		drawAccessoriesAfterPeople();
 		progressBar();
-// 		print(sideX, )
-// print(toby.x>groundWidth-(W-(toby.x-sideX)))
 	} else {
 		loading();
 	}

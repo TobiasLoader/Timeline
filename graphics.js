@@ -775,3 +775,222 @@ class Typing {
 		imageMode(CENTER);
 	}
 }
+
+class Milestone {
+	constructor (x,y,words,fontSize,col1,col2){
+		this.x = x;
+		this.y = y;
+		this.w = 2*squareSize;
+		this.h = 3*squareSize;
+		this.graphic = createGraphics(this.w,this.h);
+		this.graphic.angleMode(DEGREES);
+		this.graphic.noStroke();
+		this.graphic.fill(col1);
+		this.graphic.rect(0,this.h/2,this.w,this.h/2);
+		this.graphic.arc(this.w/2,this.h/2,this.w,this.h,180,360);
+		this.graphic.textAlign(CENTER,CENTER);
+		this.graphic.fill(col2);
+		this.graphic.textFont('Inconsolata', fontSize);
+		this.graphic.text(words,this.w/2,4*this.h/10);
+		this.graphic.textSize(round(3*fontSize/4))
+		this.graphic.text("yrs",this.w/2,29*this.h/40);
+		this.graphic.fill(120, 176, 121,100);
+		this.graphic.rect(0,ground-this.y+this.h/2,this.w,this.h/2-ground+this.y);
+	}
+	
+	draw(){
+		image(this.graphic,this.x-sideX,this.y);
+	}
+}
+
+
+class SpecialCloud {
+	constructor (x,y,h,words,fontSize,col1,col2){
+		this.x = x;
+		this.y = y;
+		this.h = h;
+		this.w = h*(5+4*sqrt(2))/6;
+		this.graphic = createGraphics(this.w,this.h);
+		this.graphic.angleMode(DEGREES);
+		this.graphic.noStroke();
+		this.graphic.fill(col1);
+		this.graphic.stroke(col2);
+		this.graphic.arc(2/6*this.h+1,4/6*this.h,4*this.h/6,4*this.h/6,90,270);
+		this.graphic.arc((2+2*sqrt(2))/6*this.h,3/6*this.h+1,this.h,this.h,187,360);
+		this.graphic.noStroke();
+		this.graphic.rect(2/6*this.h,4*this.h/6,(2+4*sqrt(2))/6*this.h,2*this.h/6);
+		this.graphic.rect(2/6*this.h,2/6*this.h,(4*sqrt(2))/6*this.h,2*this.h/6);
+		this.graphic.stroke(col2);
+		this.graphic.arc((4+4*sqrt(2))/6*this.h-1,5/6*this.h,2*this.h/6,2*this.h/6,-90,90);
+		this.graphic.arc((2+4*sqrt(2))/6*this.h,4/6*this.h,4*this.h/6,4*this.h/6,270,370);
+		this.graphic.line(2/6*this.h,this.h-1,(4+4*sqrt(2))/6*this.h,this.h-1);
+		this.graphic.noFill();
+		this.graphic.arc((2+2*sqrt(2))/6*this.h,3/6*this.h+1,this.h+20,this.h+20,207,218);
+		this.graphic.arc((2+2*sqrt(2))/6*this.h,3/6*this.h+1,this.h+33,this.h+33,206,219);
+		this.graphic.arc((2+2*sqrt(2))/6*this.h,3/6*this.h+1,this.h+46,this.h+46,205,220);
+		this.graphic.arc((2+4*sqrt(2))/6*this.h,4/6*this.h,4*this.h/6+20,4*this.h/6+20,305,320);
+		this.graphic.arc((2+4*sqrt(2))/6*this.h,4/6*this.h,4*this.h/6+33,4*this.h/6+33,304,321);
+		this.graphic.arc((2+4*sqrt(2))/6*this.h,4/6*this.h,4*this.h/6+46,4*this.h/6+46,303,322);
+		this.graphic.arc(2/6*this.h+1,4/6*this.h,4*this.h/6+20,4*this.h/6+20,130,145);
+		this.graphic.arc(2/6*this.h+1,4/6*this.h,4*this.h/6+33,4*this.h/6+33,129,146);
+		this.graphic.arc(2/6*this.h+1,4/6*this.h,4*this.h/6+46,4*this.h/6+46,128,147);
+		
+		
+		
+		this.graphic.textAlign(CENTER,CENTER);
+		this.graphic.fill(col2);
+		this.graphic.noStroke();
+		this.graphic.textFont('Inconsolata',17);
+		this.graphic.text("University\nof Bristol",73*this.w/160,13*this.h/40);
+		this.graphic.textSize(fontSize);
+		this.graphic.text(words,75*this.w/160,57*this.h/80);
+		
+		
+/*
+		this.graphic.stroke(col2);
+		this.graphic.line(0,0,this.w-1,0);
+		this.graphic.line(0,this.h-1,this.w-1,this.h-1);
+		this.graphic.line(this.w-1,0,this.w-1,this.h-1);
+		this.graphic.line(0,0,0,this.h-1);
+*/
+/*
+		this.graphic = createGraphics(this.w+1.1*this.w,this.h+0.6*this.w);
+		this.graphic.stroke(col2);
+		this.graphic.line(0,0,2*this.w+1.1*this.w-1,0);
+		this.graphic.line(0,this.h+0.6*this.w-1,this.w+1.1*this.w-1,this.h+0.6*this.w-1);
+		this.graphic.line(this.w+1.1*this.w-1,0,this.w+1.1*this.w-1,this.h+0.6*this.w-1);
+		this.graphic.line(0,0,0,this.h+0.6*this.w-1);
+		let fluffX;
+		let fluffY;
+		this.graphic.noStroke();
+		this.graphic.rectMode(CENTER);
+		for (var i=0; i<10; i+=1){
+			fluffX = random(-this.w/2,this.w/2);
+			fluffY = random(-this.h/2,this.h/2);
+			while ((fluffX*fluffX)/(this.w*this.w)+(fluffY*fluffY)/(this.h*this.h)>1){
+				fluffX = random(-this.w,this.w);
+				fluffY = random(-this.h,this.h);
+			}
+			this.graphic.fill(240,240,240,200);
+// 			this.graphic.stroke(0,0,0,150);
+			this.graphic.rect(fluffX+this.w/2+1.1/2*this.w,fluffY+this.h/2+0.6/2*this.w,random(0.6*this.w,1.1*this.w),random(0.6*this.h,1.1*this.h),10);
+		}
+*/
+	}
+	
+	draw(){
+		image(this.graphic,this.x-sideX,this.y);
+	}
+}
+
+class WaterDroplet {
+	constructor (x,y,w,h){
+		this.x = x;
+		this.y = y;
+		this.h = h;
+		this.w = w;
+		this.splash = false;
+		this.vx = 0;
+		this.vy = 0;
+		this.particleY=0;
+		this.particleX=0;
+		this.graphic = createGraphics(squareSize/2,squareSize/2);
+		this.graphic.angleMode(DEGREES);
+		this.graphic.stroke(255,255,255,100);
+		this.graphic.fill(71, 116, 168,200);
+		this.graphic.rect(0,0,squareSize/2-1,squareSize/2-1,2);
+	}
+	
+	draw(){
+		if (toby.x>=this.x && toby.x<this.x+this.w && toby.y>=this.y && toby.y<this.y+this.h){
+			if (!this.splash){
+				this.vy = -random(13,20);
+				this.particleY = -1;
+				this.vx = random(-5,5);
+				this.splash = true;
+			}
+		} else {
+			this.splash = false;
+/*
+			this.particleY=0;
+			this.vy = 0;
+			this.particleX = toby.x;
+			this.vx = 0;
+*/
+		}
+		if (this.vy<0 || this.particleY<0){
+			this.particleY += this.vy;
+			this.particleX += this.vx;
+			image(this.graphic,this.particleX-sideX,this.particleY+toby.y);
+			this.vy += 1;
+		}
+		if (this.particleY>=0){
+			this.particleY=0;
+			this.vy = 0;
+			this.particleX = toby.x;
+			this.vx = 0;
+		}
+	}
+}
+
+class Fish {
+	constructor (x,y,w,h,col){
+		this.x = x;
+		this.y = y;
+		this.h = h;
+		this.w = w;
+		this.splash = false;
+		this.vx = random(-1,1);
+		while (abs(this.vx)<0.5){
+			this.vx = random(-1,1);
+		}
+		this.vy = random(-0.3,0.3);
+		this.fishX=random(3*squareSize,this.w-4*squareSize);
+		this.fishY=random(3*squareSize,this.h-3*squareSize);
+		
+		this.fishL = createGraphics(2*squareSize,squareSize);
+		this.fishR = createGraphics(2*squareSize,squareSize);
+		
+		this.fishL.stroke(255,255,255,100);
+		this.fishL.fill(col);
+		this.fishL.bezier(
+			0, squareSize*88/110,
+			squareSize*289/110, -squareSize*119/110,
+			squareSize*289/110, squareSize*218/110,
+			0, squareSize*29/110);
+		this.fishL.stroke(255,255,255);
+		this.fishL.fill(50,50,50);
+		this.fishL.ellipse(1.65*squareSize,0.4*squareSize,0.2*squareSize,0.2*squareSize);
+		
+		this.fishR.push();
+	  	this.fishR.translate(squareSize,0);
+	  	this.fishR.scale(-1,1);
+	  	this.fishR.translate(-squareSize,0);
+	  	this.fishR.copy(this.fishL,0,0,this.w,this.h,0,0,this.w,this.h);
+	  	this.fishR.pop();
+	}
+	
+	draw(){
+		if (this.vx>0){
+			image(this.fishL,this.x+this.fishX-sideX,this.y+this.fishY);
+		} else {
+			image(this.fishR,this.x+this.fishX-sideX,this.y+this.fishY);
+		}
+	}
+	
+	update(){
+		if (this.fishX+1.5*squareSize<this.w && this.fishX-2.5*squareSize>0){
+			this.fishX += this.vx;
+		} else {
+			this.vx *= -1;
+			this.fishX += this.vx;
+		}
+		if (this.fishY+1*squareSize<this.h && this.fishY-1*squareSize>0){
+			this.fishY += this.vy;
+		} else {
+			this.vy *= -1;
+			this.fishY += this.vy;
+		}
+	}
+}
+
