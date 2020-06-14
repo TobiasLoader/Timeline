@@ -10,7 +10,7 @@ function setupScene(){
   	milestone  = [
 	  	2*squareSize,   // 0
   		22*squareSize,  // 1
-  		64*squareSize,  // 2
+  		62*squareSize,  // 2
   		100*squareSize, // 3
   		180*squareSize, // 4
   		216*squareSize, // 5
@@ -54,7 +54,7 @@ function locationFeatures(X,Y){
 	
 	/// MILESTONE 2
 	
-	if (X>=milestone[2]+13*squareSize && X<milestone[2]+28*squareSize && Y>=ground-1*squareSize && Y<ground+3*squareSize){ return 'PAPER';}
+	if (X>=milestone[2]+10*squareSize && X<milestone[2]+28*squareSize && Y>=ground-1*squareSize && Y<ground+3*squareSize){ return 'PAPER';}
 
 	/// MILESTONE 3
 	
@@ -133,7 +133,7 @@ function earthFloor(X){
 	
 	/// MILESTONE 2
 	
-	if (X>=milestone[2]+12*squareSize && X<milestone[2]+29*squareSize){ return ground-2*squareSize;}
+	if (X>=milestone[2]+9*squareSize && X<milestone[2]+29*squareSize){ return ground-2*squareSize;}
 	
 	/// MILESTONE 3
 	
@@ -195,10 +195,10 @@ function setupAccessories(){
 
 	};
 	typings = {
-		'1': new Typing(milestone[2],ground-4*squareSize,40*squareSize,10*squareSize,'print("Hello World!")',26,color(9, 168, 176)),
+		'1': new Typing(milestone[2]+10*squareSize,ground-4*squareSize,18*squareSize,10*squareSize,'print("Hello World!")',26,color(9, 168, 176)),
 	};
 	notices = {
-		'0': new Notice(milestone[0]+9*squareSize,noticeHeight,8*squareSize,4*squareSize,'2002',"Firstly I was born..."),
+		'0': new Notice(milestone[0]+8.8*squareSize,noticeHeight,8*squareSize,4*squareSize,'2002',"Firstly I was born..."),
 		'5': new Notice(milestone[1],noticeHeight,8*squareSize,4*squareSize,"Moved to France"),
 		'8': new Notice(milestone[2],noticeHeight,8*squareSize,4*squareSize,"Started coding"),
 		'9': new Notice(milestone[3],noticeHeight,8*squareSize,4*squareSize,"Climbed trees\nwith my brother"),

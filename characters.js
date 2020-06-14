@@ -6,97 +6,113 @@ function setupPeople(){
 	  		new Human(35,70,color(9, 168, 176)),
 	  		-2*squareSize,
 	  		ground-35,
-	  		7),
+	  		7,
+	  		false),
 	  	'Toby2': new Person(
 	  		'Toby2',
 	  		new Human(38,76,color(9, 168, 176)),
 	  		0,
 	  		ground-38,
-	  		8),
+	  		8,
+	  		false),
 	  	'Toby3': new Person(
 	  		'Toby3',
 	  		new Human(40,80,color(9, 168, 176)),
 	  		0,
 	  		ground-40,
-	  		8),
+	  		8,
+	  		false),
 	  	'Toby4': new Person(
 	  		'Toby4',
 	  		new Human(50,100,color(9, 168, 176)),
 	  		0,
 	  		ground-50,
-	  		9),
+	  		9,
+	  		false),
 	  	'Toby5': new Person(
 	  		'Toby5',
 	  		new Human(60,120,color(9, 168, 176)),
 	  		0,
 	  		ground-60,
-	  		10),
+	  		10,
+	  		false),
 	  	'Toby6': new Person(
 	  		'Toby6',
 	  		new Human(70,140,color(9, 168, 176)),
 	  		0,
 	  		ground-70,
-	  		11),
+	  		11,
+	  		false),
 	  	'Toby7': new Person(
 	  		'Toby7',
 	  		new Human(80,150,color(9, 168, 176)),
 	  		0,
 	  		ground-75,
-	  		11),
+	  		11,
+	  		false),
 	  	'Toby8': new Person(
 	  		'Toby8',
 	  		new Human(85,156,color(9, 168, 176)),
 	  		0,
 	  		ground-78,
-	  		11),
+	  		11,
+	  		false),
 	  	'Toby9': new Person(
 	  		'Toby9',
 	  		new Human(90,160,color(9, 168, 176)),
 	  		0,
 	  		ground-80,
-	  		11),
+	  		11,
+	  		false),
 	  	'Toby10': new Person(
 	  		'Toby10',
 	  		new Human(92,166,color(9, 168, 176)),
 	  		0,
 	  		ground-83,
-	  		11),
+	  		11,
+	  		false),
 	  	'Mother': new Person(
 	  		'Mother',
 	  		new Human(85,145,color(179, 112, 111)),
 	  		-6*squareSize,
 	  		ground-65,
-	  		7),
-	  	'Brother': new Person(
-	  		'Brother',
+	  		7,
+	  		true),
+	  	'Tom': new Person(
+	  		'Tom',
 	  		new Human(60,120,color(111, 179, 111)),
 	  		milestone[3]+20*squareSize,
 	  		ground-75,
-	  		9),
-	  	'Dog': new Person(
-	  		'Dog',
+	  		9,
+	  		true),
+	  	'Daisy': new Person(
+	  		'Daisy',
 	  		new Dog(140,60,color(158, 122, 74)), //199, 177, 135
 	  		milestone[3]+45*squareSize,
 	  		ground-30,
-	  		7),
+	  		7,
+	  		true),
 	  	'Sheep1': new Person(
 	  		'Sheep1',
 	  		new Sheep(100,60,color(84, 84, 80),color(227, 226, 218)), //199, 177, 135
 	  		milestone[5]+24*squareSize, // 200
 	  		0,
-	  		7),
+	  		7,
+	  		false),
 	  	'Sheep2': new Person(
 	  		'Sheep2',
 	  		new Sheep(100,60,color(84, 84, 80),color(227, 226, 218)), //199, 177, 135
 	  		milestone[5]+60*squareSize, // 200
 	  		0,
-	  		7),
+	  		7,
+	  		false),
 	  	'Father': new Person(
 	  		'Father',
 	  		new Human(100,160,color(151, 179, 111)),
 	  		milestone[5]+91*squareSize,
 	  		ground-80,
-	  		7),
+	  		7,
+	  		true),
   	}
 }
 
@@ -144,7 +160,7 @@ function drawPeople(){
 
 
 class Person {
-	constructor (name, body, x, y, maxVX){
+	constructor (name, body, x, y, maxVX, showName){
 		this.name = name;
 		this.body = body;
 		this.body.build();
@@ -155,6 +171,7 @@ class Person {
 		this.vx = 0;
 		this.vy = 0;
 		this.maxvx = maxVX;
+		this.showName = showName;
 	}
 	
 	heady(Y){
@@ -200,7 +217,7 @@ class Person {
 				image(this.body.body.front,this.x-sideX,this.y);
 			}
 		}
-		if (this.name.slice(0,4)!=='Toby'){
+		if (this.showName){
 			fill(this.body.col);
 			noStroke();
 			text(this.name,this.x-sideX,this.y-this.bodyH/2-20);
@@ -290,7 +307,7 @@ class Person {
 			}
 		}
 */
-		if (this.name==='Dog' && toby.x>milestone[3]+50*squareSize && toby.x<milestone[3]+75*squareSize && (this.x>=milestone[3]+45*squareSize||toby.vx>0) && (this.x<=milestone[3]+72*squareSize||toby.vx<0)){
+		if (this.name==='Daisy' && toby.x>milestone[3]+50*squareSize && toby.x<milestone[3]+75*squareSize && (this.x>=milestone[3]+45*squareSize||toby.vx>0) && (this.x<=milestone[3]+72*squareSize||toby.vx<0)){
 			this.vx = toby.vx;
 		}
 		
