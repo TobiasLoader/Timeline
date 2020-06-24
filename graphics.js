@@ -245,8 +245,7 @@ class Dog {
 	  	
 	  	
 	  	this.body.left1.angleMode(DEGREES);
-	  	
-		this.body.left1.noStroke();
+	  	this.body.left1.noStroke();
 		this.body.left1.fill(this.col);
 		this.body.left1.push();
 		this.body.left1.translate(0.80*this.w,0.30*this.h);
@@ -259,25 +258,25 @@ class Dog {
 	  	this.body.left1.rect(0.13*this.w,0.06*this.h,0.06*this.w,0.02*this.h,1);
 	  	this.body.left1.rect(0.13*this.w,0.09*this.h,0.06*this.w,0.02*this.h,1);
 		this.body.left1.pop();
-		this.body.left1.rect(0.25*this.w,0.40*this.h,0.43*this.w,0.25*this.h,2);
-		this.body.left1.rect(0.25*this.w,0.29*this.h,0.37*this.w,0.15*this.h,2);
+		this.body.left1.rect(0.30*this.w,0.40*this.h,0.38*this.w,0.25*this.h,2);
+		this.body.left1.rect(0.30*this.w,0.29*this.h,0.32*this.w,0.25*this.h,4);
 		this.body.left1.push();
-		this.body.left1.translate(0.10*this.w,0.40*this.h);
+		this.body.left1.translate(0.15*this.w,0.40*this.h);
 	  	this.body.left1.rotate(5);
 	  	this.body.left1.rect(0,0,0.12*this.w,0.10*this.h,2);
 	  	this.body.left1.pop();
 	  	this.body.left1.push();
-		this.body.left1.translate(0.05*this.w,0.33*this.h);
+		this.body.left1.translate(0.10*this.w,0.33*this.h);
 	  	this.body.left1.rotate(25);
 	  	this.body.left1.rect(0,0,0.08*this.w,0.10*this.h,2);
 	  	this.body.left1.pop();
 		this.body.left1.push();
-		this.body.left1.translate(0.25*this.w,0.70*this.h);
+		this.body.left1.translate(0.30*this.w,0.70*this.h);
 	  	this.body.left1.rotate(30);
 	  	this.body.left1.rect(0,0,0.06*this.w,0.29*this.h,2);
 	  	this.body.left1.pop();
 	  	this.body.left1.push();
-		this.body.left1.translate(0.32*this.w,0.74*this.h);
+		this.body.left1.translate(0.37*this.w,0.74*this.h);
 	  	this.body.left1.rotate(-15);
 	  	this.body.left1.rect(0,0,0.05*this.w,0.27*this.h,2);
 	  	this.body.left1.pop();
@@ -313,25 +312,25 @@ class Dog {
 	  	this.body.left2.rect(0.13*this.w,0.06*this.h,0.06*this.w,0.02*this.h,1);
 	  	this.body.left2.rect(0.13*this.w,0.09*this.h,0.06*this.w,0.02*this.h,1);
 		this.body.left2.pop();
-		this.body.left2.rect(0.25*this.w,0.40*this.h,0.43*this.w,0.25*this.h,2);
-		this.body.left2.rect(0.25*this.w,0.29*this.h,0.37*this.w,0.15*this.h,2);
+		this.body.left2.rect(0.30*this.w,0.40*this.h,0.38*this.w,0.25*this.h,2);
+		this.body.left2.rect(0.30*this.w,0.29*this.h,0.32*this.w,0.25*this.h,4);
 		this.body.left2.push();
-		this.body.left2.translate(0.10*this.w,0.40*this.h);
+		this.body.left2.translate(0.15*this.w,0.40*this.h);
 	  	this.body.left2.rotate(10);
 	  	this.body.left2.rect(0,0,0.12*this.w,0.10*this.h,2);
 	  	this.body.left2.pop();
 	  	this.body.left2.push();
-		this.body.left2.translate(0.07*this.w,0.31*this.h);
+		this.body.left2.translate(0.12*this.w,0.31*this.h);
 	  	this.body.left2.rotate(45);
 	  	this.body.left2.rect(0,0,0.08*this.w,0.10*this.h,2);
 	  	this.body.left2.pop();
 		this.body.left2.push();
-		this.body.left2.translate(0.25*this.w,0.70*this.h);
+		this.body.left2.translate(0.30*this.w,0.70*this.h);
 	  	this.body.left2.rotate(5);
 	  	this.body.left2.rect(0,0,0.06*this.w,0.29*this.h,2);
 	  	this.body.left2.pop();
 	  	this.body.left2.push();
-		this.body.left2.translate(0.32*this.w,0.74*this.h);
+		this.body.left2.translate(0.37*this.w,0.74*this.h);
 	  	this.body.left2.rotate(-5);
 	  	this.body.left2.rect(0,0,0.05*this.w,0.27*this.h,2);
 	  	this.body.left2.pop();
@@ -358,25 +357,25 @@ class Dog {
 		this.body.left3.noStroke();
 		this.body.left3.rect(0.71*this.w,0,0.22*this.w,0.50*this.h,2);
 		this.body.left3.rect(0.90*this.w,0.22*this.h,0.09*this.w,0.19*this.h,2);
-		this.body.left3.rect(0.25*this.w,0.40*this.h,0.43*this.w,0.25*this.h,2);
-		this.body.left3.rect(0.25*this.w,0.29*this.h,0.37*this.w,0.15*this.h,2);
+		this.body.left3.rect(0.30*this.w,0.40*this.h,0.38*this.w,0.25*this.h,2);
+		this.body.left3.rect(0.30*this.w,0.29*this.h,0.32*this.w,0.25*this.h,4);
 		this.body.left3.push();
-		this.body.left3.translate(0.10*this.w,0.40*this.h);
+		this.body.left3.translate(0.15*this.w,0.40*this.h);
 	  	this.body.left3.rotate(2);
 	  	this.body.left3.rect(0,0,0.12*this.w,0.10*this.h,2);
 	  	this.body.left3.pop();
 	  	this.body.left3.push();
-		this.body.left3.translate(0.04*this.w,0.34*this.h);
+		this.body.left3.translate(0.09*this.w,0.34*this.h);
 	  	this.body.left3.rotate(20);
 	  	this.body.left3.rect(0,0,0.08*this.w,0.10*this.h,2);
 	  	this.body.left3.pop();
 		this.body.left3.push();
-		this.body.left3.translate(0.25*this.w,0.70*this.h);
+		this.body.left3.translate(0.30*this.w,0.70*this.h);
 	  	this.body.left3.rotate(20);
 	  	this.body.left3.rect(0,0,0.05*this.w,0.27*this.h,2);
 	  	this.body.left3.pop();
 	  	this.body.left3.push();
-		this.body.left3.translate(0.32*this.w,0.74*this.h);
+		this.body.left3.translate(0.37*this.w,0.74*this.h);
 	  	this.body.left3.rotate(-25);
 	  	this.body.left3.rect(0,0,0.06*this.w,0.29*this.h,2);
 	  	this.body.left3.pop();
@@ -979,18 +978,370 @@ class Fish {
 	}
 	
 	update(){
-		if (this.fishX+1.5*squareSize<this.w && this.fishX-2.5*squareSize>0){
-			this.fishX += this.vx;
-		} else {
-			this.vx *= -1;
-			this.fishX += this.vx;
+		this.fishX += this.vx;
+		if (this.fishX-3*squareSize<0){
+			this.vx += 0.02;
+		} else if (this.fishX+2*squareSize>this.w) {
+			this.vx -= 0.02;
 		}
-		if (this.fishY+1*squareSize<this.h && this.fishY-1*squareSize>0){
-			this.fishY += this.vy;
-		} else {
-			this.vy *= -1;
-			this.fishY += this.vy;
+		this.fishY += this.vy;
+		if (this.fishY-1*squareSize<0){
+			this.vy += 0.02;
+		} else if (this.fishY+1*squareSize>this.h) {
+			this.vy -= 0.02;
+		}	
+	}
+}
+
+class Bone {
+	constructor (x,y){
+		this.x = x;
+		this.y = y;
+
+		this.graphic = createGraphics(2*squareSize,2*squareSize);
+
+// 		this.graphic.stroke(0,0,0);
+		this.graphic.noStroke();
+		this.graphic.fill(250,250,250);
+		this.graphic.angleMode(DEGREES);
+		this.graphic.translate(squareSize,squareSize);
+		this.graphic.rotate(random(-30,30));
+		this.graphic.rect(-0.5*squareSize,-0.15*squareSize,squareSize,0.3*squareSize,2);
+		this.graphic.rect(-0.6*squareSize,-0.3*squareSize,0.25*squareSize,0.25*squareSize,2);
+		this.graphic.rect(-0.6*squareSize,0.05*squareSize,0.25*squareSize,0.25*squareSize,2);
+		this.graphic.rect(0.35*squareSize,-0.3*squareSize,0.25*squareSize,0.25*squareSize,2);
+		this.graphic.rect(0.35*squareSize,0.05*squareSize,0.25*squareSize,0.25*squareSize,2);
+	}
+	draw(){
+		image(this.graphic,this.x-sideX,this.y);
+	}
+}
+
+class Bird {
+	constructor (x,y,direction,size,timeDelay){
+		this.x = x;
+		this.y = y;
+		this.direction = direction;
+		
+		this.timeDelay = timeDelay;
+		this.startTime = 0;
+		this.onScreen = true;
+		
+		this.w = size;
+		this.h = size;
+		
+		if (this.direction==='R'){
+			this.vx = 5/8 * size/squareSize;
+		} else if (this.direction==='L'){
+			this.vx = -5/8 * size/squareSize;
+		}
+		
+		this.graphicL1 = createGraphics(this.w,this.h);
+		this.graphicL2 = createGraphics(this.w,this.h);
+		this.graphicL3 = createGraphics(this.w,this.h);
+		this.graphicL4 = createGraphics(this.w,this.h);
+		this.graphicR1 = createGraphics(this.w,this.h);
+		this.graphicR2 = createGraphics(this.w,this.h);
+		this.graphicR3 = createGraphics(this.w,this.h);
+		this.graphicR4 = createGraphics(this.w,this.h);
+	  	
+		this.graphicL1.fill(80,150);
+		this.graphicL1.noStroke();
+		this.graphicL1.beginShape();
+		this.graphicL1.curveVertex(this.w*0.63, this.h*0.44);
+		this.graphicL1.curveVertex(this.w*0.57, this.h*0.42);
+		this.graphicL1.curveVertex(this.w*0.58, this.h*0.49);
+		this.graphicL1.curveVertex(this.w*0.61, this.h*0.53);
+		this.graphicL1.curveVertex(this.w*0.6, this.h*0.55);
+		this.graphicL1.curveVertex(this.w*0.63, this.h*0.59);
+		this.graphicL1.curveVertex(this.w*0.62, this.h*0.62);
+		this.graphicL1.curveVertex(this.w*0.63, this.h*0.66);
+		this.graphicL1.curveVertex(this.w*0.64, this.h*0.7);
+		this.graphicL1.curveVertex(this.w*0.61, this.h*0.7);
+		this.graphicL1.curveVertex(this.w*0.6, this.h*0.74);
+		this.graphicL1.curveVertex(this.w*0.53, this.h*0.68);
+		this.graphicL1.curveVertex(this.w*0.48, this.h*0.61);
+		this.graphicL1.curveVertex(this.w*0.49, this.h*0.67);
+		this.graphicL1.curveVertex(this.w*0.49, this.h*0.73);
+		this.graphicL1.curveVertex(this.w*0.47, this.h*0.77);
+		this.graphicL1.curveVertex(this.w*0.4, this.h*0.64);
+		this.graphicL1.curveVertex(this.w*0.35, this.h*0.54);
+		this.graphicL1.curveVertex(this.w*0.33, this.h*0.46);
+		this.graphicL1.curveVertex(this.w*0.32, this.h*0.44);
+		this.graphicL1.curveVertex(this.w*0.31, this.h*0.42);
+		this.graphicL1.curveVertex(this.w*0.28, this.h*0.4);
+		this.graphicL1.curveVertex(this.w*0.24, this.h*0.39);
+		this.graphicL1.curveVertex(this.w*0.25, this.h*0.37);
+		this.graphicL1.curveVertex(this.w*0.25, this.h*0.34);
+		this.graphicL1.curveVertex(this.w*0.27, this.h*0.32);
+		this.graphicL1.curveVertex(this.w*0.33, this.h*0.32);
+		this.graphicL1.curveVertex(this.w*0.38, this.h*0.31);
+		this.graphicL1.curveVertex(this.w*0.41, this.h*0.32);
+		this.graphicL1.curveVertex(this.w*0.45, this.h*0.32);
+		this.graphicL1.curveVertex(this.w*0.49, this.h*0.32);
+		this.graphicL1.curveVertex(this.w*0.54, this.h*0.33);
+		this.graphicL1.curveVertex(this.w*0.58, this.h*0.35);
+		this.graphicL1.curveVertex(this.w*0.62, this.h*0.35);
+		this.graphicL1.curveVertex(this.w*0.67, this.h*0.35);
+		this.graphicL1.curveVertex(this.w*0.71, this.h*0.34);
+		this.graphicL1.curveVertex(this.w*0.76, this.h*0.35);
+		this.graphicL1.curveVertex(this.w*0.76, this.h*0.39);
+		this.graphicL1.curveVertex(this.w*0.73, this.h*0.42);
+		this.graphicL1.curveVertex(this.w*0.69, this.h*0.45);
+		this.graphicL1.curveVertex(this.w*0.63, this.h*0.44);
+		this.graphicL1.curveVertex(this.w*0.57, this.h*0.42);
+		this.graphicL1.curveVertex(this.w*0.58, this.h*0.49);
+		this.graphicL1.endShape();
+		this.graphicL1.stroke(255, 185, 33);
+		this.graphicL1.strokeWeight(2);
+		this.graphicL1.point(this.w*0.30,this.h*0.35);
+		
+		this.graphicL2.fill(80,150);
+		this.graphicL2.noStroke();
+		this.graphicL2.beginShape();
+		this.graphicL2.curveVertex(this.w*0.59, this.h*0.47);
+		this.graphicL2.curveVertex(this.w*0.56, this.h*0.48);
+		this.graphicL2.curveVertex(this.w*0.61, this.h*0.53);
+		this.graphicL2.curveVertex(this.w*0.63, this.h*0.56);
+		this.graphicL2.curveVertex(this.w*0.65, this.h*0.6);
+		this.graphicL2.curveVertex(this.w*0.68, this.h*0.63);
+		this.graphicL2.curveVertex(this.w*0.67, this.h*0.66);
+		this.graphicL2.curveVertex(this.w*0.69, this.h*0.68);
+		this.graphicL2.curveVertex(this.w*0.65, this.h*0.69);
+		this.graphicL2.curveVertex(this.w*0.62, this.h*0.68);
+		this.graphicL2.curveVertex(this.w*0.6, this.h*0.69);
+		this.graphicL2.curveVertex(this.w*0.57, this.h*0.68);
+		this.graphicL2.curveVertex(this.w*0.52, this.h*0.63);
+		this.graphicL2.curveVertex(this.w*0.43, this.h*0.54);
+		this.graphicL2.curveVertex(this.w*0.44, this.h*0.57);
+		this.graphicL2.curveVertex(this.w*0.44, this.h*0.63);
+		this.graphicL2.curveVertex(this.w*0.4, this.h*0.6);
+		this.graphicL2.curveVertex(this.w*0.37, this.h*0.55);
+		this.graphicL2.curveVertex(this.w*0.33, this.h*0.49);
+		this.graphicL2.curveVertex(this.w*0.29, this.h*0.47);
+		this.graphicL2.curveVertex(this.w*0.25, this.h*0.43);
+		this.graphicL2.curveVertex(this.w*0.22, this.h*0.44);
+		this.graphicL2.curveVertex(this.w*0.23, this.h*0.42);
+		this.graphicL2.curveVertex(this.w*0.24, this.h*0.4);
+		this.graphicL2.curveVertex(this.w*0.25, this.h*0.37);
+		this.graphicL2.curveVertex(this.w*0.27, this.h*0.36);
+		this.graphicL2.curveVertex(this.w*0.33, this.h*0.36);
+		this.graphicL2.curveVertex(this.w*0.36, this.h*0.35);
+		this.graphicL2.curveVertex(this.w*0.39, this.h*0.35);
+		this.graphicL2.curveVertex(this.w*0.44, this.h*0.36);
+		this.graphicL2.curveVertex(this.w*0.49, this.h*0.37);
+		this.graphicL2.curveVertex(this.w*0.53, this.h*0.38);
+		this.graphicL2.curveVertex(this.w*0.55, this.h*0.39);
+		this.graphicL2.curveVertex(this.w*0.57, this.h*0.39);
+		this.graphicL2.curveVertex(this.w*0.6, this.h*0.39);
+		this.graphicL2.curveVertex(this.w*0.67, this.h*0.4);
+		this.graphicL2.curveVertex(this.w*0.75, this.h*0.38);
+		this.graphicL2.curveVertex(this.w*0.73, this.h*0.44);
+		this.graphicL2.curveVertex(this.w*0.7, this.h*0.49);
+		this.graphicL2.curveVertex(this.w*0.65, this.h*0.49);
+		this.graphicL2.curveVertex(this.w*0.59, this.h*0.47);
+		this.graphicL2.curveVertex(this.w*0.56, this.h*0.48);
+		this.graphicL2.curveVertex(this.w*0.61, this.h*0.53);
+		this.graphicL2.endShape();
+		this.graphicL2.stroke(255, 185, 33);
+		this.graphicL2.strokeWeight(2);
+		this.graphicL2.point(this.w*0.30,this.h*0.41);
+		
+		this.graphicL3.fill(80,150);
+		this.graphicL3.noStroke();
+		this.graphicL3.beginShape();
+		this.graphicL3.curveVertex(this.w*0.71, this.h*0.38);
+		this.graphicL3.curveVertex(this.w*0.66, this.h*0.42);
+		this.graphicL3.curveVertex(this.w*0.65, this.h*0.47);
+		this.graphicL3.curveVertex(this.w*0.62, this.h*0.51);
+		this.graphicL3.curveVertex(this.w*0.63, this.h*0.53);
+		this.graphicL3.curveVertex(this.w*0.62, this.h*0.56);
+		this.graphicL3.curveVertex(this.w*0.74, this.h*0.54);
+		this.graphicL3.curveVertex(this.w*0.75, this.h*0.61);
+		this.graphicL3.curveVertex(this.w*0.69, this.h*0.65);
+		this.graphicL3.curveVertex(this.w*0.58, this.h*0.63);
+		this.graphicL3.curveVertex(this.w*0.54, this.h*0.64);
+		this.graphicL3.curveVertex(this.w*0.53, this.h*0.68);
+		this.graphicL3.curveVertex(this.w*0.5, this.h*0.67);
+		this.graphicL3.curveVertex(this.w*0.46, this.h*0.68);
+		this.graphicL3.curveVertex(this.w*0.45, this.h*0.66);
+		this.graphicL3.curveVertex(this.w*0.38, this.h*0.66);
+		this.graphicL3.curveVertex(this.w*0.3, this.h*0.62);
+		this.graphicL3.curveVertex(this.w*0.26, this.h*0.59);
+		this.graphicL3.curveVertex(this.w*0.24, this.h*0.6);
+		this.graphicL3.curveVertex(this.w*0.24, this.h*0.58);
+		this.graphicL3.curveVertex(this.w*0.25, this.h*0.56);
+		this.graphicL3.curveVertex(this.w*0.25, this.h*0.53);
+		this.graphicL3.curveVertex(this.w*0.29, this.h*0.52);
+		this.graphicL3.curveVertex(this.w*0.33, this.h*0.52);
+		this.graphicL3.curveVertex(this.w*0.36, this.h*0.51);
+		this.graphicL3.curveVertex(this.w*0.39, this.h*0.48);
+		this.graphicL3.curveVertex(this.w*0.41, this.h*0.45);
+		this.graphicL3.curveVertex(this.w*0.43, this.h*0.42);
+		this.graphicL3.curveVertex(this.w*0.44, this.h*0.4);
+		this.graphicL3.curveVertex(this.w*0.46, this.h*0.37);
+		this.graphicL3.curveVertex(this.w*0.48, this.h*0.36);
+		this.graphicL3.curveVertex(this.w*0.5, this.h*0.38);
+		this.graphicL3.curveVertex(this.w*0.51, this.h*0.41);
+		this.graphicL3.curveVertex(this.w*0.48, this.h*0.47);
+		this.graphicL3.curveVertex(this.w*0.55, this.h*0.39);
+		this.graphicL3.curveVertex(this.w*0.64, this.h*0.31);
+		this.graphicL3.curveVertex(this.w*0.66, this.h*0.32);
+		this.graphicL3.curveVertex(this.w*0.68, this.h*0.3);
+		this.graphicL3.curveVertex(this.w*0.73, this.h*0.3);
+		this.graphicL3.curveVertex(this.w*0.72, this.h*0.35);
+		this.graphicL3.curveVertex(this.w*0.71, this.h*0.38);
+		this.graphicL3.curveVertex(this.w*0.66, this.h*0.42);
+		this.graphicL3.curveVertex(this.w*0.65, this.h*0.47);
+		this.graphicL3.endShape();
+		this.graphicL3.stroke(255, 185, 33);
+		this.graphicL3.strokeWeight(2);
+		this.graphicL3.point(this.w*0.30,this.h*0.55);
+		
+		this.graphicL4.fill(80,150);
+		this.graphicL4.noStroke();
+		this.graphicL4.beginShape();
+		this.graphicL4.curveVertex(this.w*0.64, this.h*0.23);
+		this.graphicL4.curveVertex(this.w*0.66, this.h*0.23);
+		this.graphicL4.curveVertex(this.w*0.66, this.h*0.32);
+		this.graphicL4.curveVertex(this.w*0.62, this.h*0.36);
+		this.graphicL4.curveVertex(this.w*0.63, this.h*0.41);
+		this.graphicL4.curveVertex(this.w*0.6, this.h*0.45);
+		this.graphicL4.curveVertex(this.w*0.6, this.h*0.5);
+		this.graphicL4.curveVertex(this.w*0.57, this.h*0.52);
+		this.graphicL4.curveVertex(this.w*0.58, this.h*0.55);
+		this.graphicL4.curveVertex(this.w*0.59, this.h*0.62);
+		this.graphicL4.curveVertex(this.w*0.56, this.h*0.64);
+		this.graphicL4.curveVertex(this.w*0.53, this.h*0.66);
+		this.graphicL4.curveVertex(this.w*0.6, this.h*0.69);
+		this.graphicL4.curveVertex(this.w*0.75, this.h*0.67);
+		this.graphicL4.curveVertex(this.w*0.69, this.h*0.78);
+		this.graphicL4.curveVertex(this.w*0.6, this.h*0.76);
+		this.graphicL4.curveVertex(this.w*0.54, this.h*0.77);
+		this.graphicL4.curveVertex(this.w*0.51, this.h*0.81);
+		this.graphicL4.curveVertex(this.w*0.45, this.h*0.79);
+		this.graphicL4.curveVertex(this.w*0.35, this.h*0.78);
+		this.graphicL4.curveVertex(this.w*0.27, this.h*0.72);
+		this.graphicL4.curveVertex(this.w*0.24, this.h*0.72);
+		this.graphicL4.curveVertex(this.w*0.25, this.h*0.69);
+		this.graphicL4.curveVertex(this.w*0.26, this.h*0.67);
+		this.graphicL4.curveVertex(this.w*0.28, this.h*0.65);
+		this.graphicL4.curveVertex(this.w*0.32, this.h*0.63);
+		this.graphicL4.curveVertex(this.w*0.3, this.h*0.51);
+		this.graphicL4.curveVertex(this.w*0.41, this.h*0.23);
+		this.graphicL4.curveVertex(this.w*0.46, this.h*0.14);
+		this.graphicL4.curveVertex(this.w*0.48, this.h*0.18);
+		this.graphicL4.curveVertex(this.w*0.48, this.h*0.21);
+		this.graphicL4.curveVertex(this.w*0.49, this.h*0.19);
+		this.graphicL4.curveVertex(this.w*0.5, this.h*0.24);
+		this.graphicL4.curveVertex(this.w*0.48, this.h*0.28);
+		this.graphicL4.curveVertex(this.w*0.49, this.h*0.29);
+		this.graphicL4.curveVertex(this.w*0.46, this.h*0.37);
+		this.graphicL4.curveVertex(this.w*0.55, this.h*0.23);
+		this.graphicL4.curveVertex(this.w*0.61, this.h*0.18);
+		this.graphicL4.curveVertex(this.w*0.61, this.h*0.21);
+		this.graphicL4.curveVertex(this.w*0.64, this.h*0.2);
+		this.graphicL4.curveVertex(this.w*0.64, this.h*0.23);
+		this.graphicL4.curveVertex(this.w*0.66, this.h*0.23);
+		this.graphicL4.curveVertex(this.w*0.66, this.h*0.32);
+		this.graphicL4.endShape();
+		this.graphicL4.stroke(255, 185, 33);
+		this.graphicL4.strokeWeight(2);
+		this.graphicL4.point(this.w*0.30,this.h*0.69);
+		
+		this.graphicR1.push();
+	  	this.graphicR1.translate(this.w/2,0);
+	  	this.graphicR1.scale(-1,1);
+	  	this.graphicR1.translate(-this.w/2,0);
+	  	this.graphicR1.copy(this.graphicL1,0,0,this.w,this.h,0,0,this.w,this.h);
+	  	this.graphicR1.pop();
+	  	
+	  	this.graphicR2.push();
+	  	this.graphicR2.translate(this.w/2,0);
+	  	this.graphicR2.scale(-1,1);
+	  	this.graphicR2.translate(-this.w/2,0);
+	  	this.graphicR2.copy(this.graphicL2,0,0,this.w,this.h,0,0,this.w,this.h);
+	  	this.graphicR2.pop();
+	  	
+	  	this.graphicR3.push();
+	  	this.graphicR3.translate(this.w/2,0);
+	  	this.graphicR3.scale(-1,1);
+	  	this.graphicR3.translate(-this.w/2,0);
+	  	this.graphicR3.copy(this.graphicL3,0,0,this.w,this.h,0,0,this.w,this.h);
+	  	this.graphicR3.pop();
+	  	
+	  	this.graphicR4.push();
+	  	this.graphicR4.translate(this.w/2,0);
+	  	this.graphicR4.scale(-1,1);
+	  	this.graphicR4.translate(-this.w/2,0);
+	  	this.graphicR4.copy(this.graphicL4,0,0,this.w,this.h,0,0,this.w,this.h);
+	  	this.graphicR4.pop();
+	}
+	draw(){
+		
+		if (this.direction==='R'){
+			if (round(millis()/100)%6===0){
+				image(this.graphicR1,this.x,this.y+0.1*this.h);
+			} else if (round(millis()/100)%6===1) {
+				image(this.graphicR2,this.x,this.y+0.05*this.h);
+			} else if (round(millis()/100)%6===2) {
+				image(this.graphicR3,this.x,this.y-0.08*this.h);
+			} else if (round(millis()/100)%6===3) {
+				image(this.graphicR4,this.x,this.y-0.20*this.h);
+			} else if (round(millis()/100)%6===4) {
+				image(this.graphicR3,this.x,this.y-0.08*this.h);
+			} else if (round(millis()/100)%6===5) {
+				image(this.graphicR2,this.x,this.y+0.05*this.h);
+			}
+			
+/*
+image(this.graphicR1,this.x,this.y+0.1*this.h);
+image(this.graphicR2,this.x,this.y+0.05*this.h);
+image(this.graphicR3,this.x,this.y-0.08*this.h);
+image(this.graphicR4,this.x,this.y-0.20*this.h);
+*/
+		} else if (this.direction==='L'){
+			if (round(millis()/100)%6===0){
+				image(this.graphicL1,this.x,this.y+0.1*this.h);
+			} else if (round(millis()/100)%6===1) {
+				image(this.graphicL2,this.x,this.y+0.05*this.h);
+			} else if (round(millis()/100)%6===2) {
+				image(this.graphicL3,this.x,this.y-0.05*this.h);
+			} else if (round(millis()/100)%6===3) {
+				image(this.graphicL4,this.x,this.y-0.15*this.h);
+			} else if (round(millis()/100)%6===4) {
+				image(this.graphicL3,this.x,this.y-0.05*this.h);
+			} else if (round(millis()/100)%6===5) {
+				image(this.graphicL2,this.x,this.y+0.05*this.h);
+			}
+		}
+	}
+	
+	update(){
+		this.x += this.vx;
+		if (this.x-this.w>W){
+			if (this.onScreen){
+				this.startTime = millis();
+				this.onScreen = false;
+			}
+			if ((millis()-this.startTime)/1000>this.timeDelay){
+				this.x = -this.w;
+				this.onScreen = true;
+			}
+			
+		}
+		if (this.x+this.w<0){
+			if (this.onScreen){
+				this.startTime = millis();
+				this.onScreen = false;
+			}
+			if ((millis()-this.startTime)/1000>this.timeDelay){
+				this.x = W+this.w;
+				this.onScreen = true;
+			}
 		}
 	}
 }
+
+
 

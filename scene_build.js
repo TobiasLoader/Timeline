@@ -45,13 +45,13 @@ function setupEarth(){
 	features.noStroke();
 	
 	for (var x=0; x<groundWidth+squareSize; x+=squareSize){
-		for (var y=earthFloor(x); y<H+squareSize; y+=squareSize){
+		for (var y=earthFloor(x,0); y<H+squareSize; y+=squareSize){
 			if (locationFeatures(x,y)==='GROUND'){
 				colDiff = random(-10,10);
-				if (random(0,1)<0.2*(1 - 2*abs(y-(H+earthFloor(x))/2)/(H-earthFloor(x)))){
+				if (random(0,1)<0.2*(1 - 2*abs(y-(H+earthFloor(x,0))/2)/(H-earthFloor(x,0)))){
 					// SOIL / MUD
 					earth.fill(158+colDiff, 145+colDiff, 109+colDiff);
-				} else if (random(0,1)<1*sq(sq((y-earthFloor(x))/(H-earthFloor(x))))){
+				} else if (random(0,1)<1*sq(sq((y-earthFloor(x,0))/(H-earthFloor(x,0))))){
 					// ROCK
 					earth.fill(146+colDiff, 161+colDiff, 150+colDiff);
 				} else {
@@ -63,7 +63,7 @@ function setupEarth(){
 				buildFeatures(x,y);
 			}
 		}
-		for (var y=earthFloor(x)-squareSize; y>0; y-=squareSize){
+		for (var y=earthFloor(x,0)-squareSize; y>0; y-=squareSize){
 			buildFeatures(x,y);
 		}
 	}
@@ -108,6 +108,15 @@ function buildFeatures(X,Y){
 	} else if (featureType === 'ROCK'){
 		features.fill(146+colDiff, 161+colDiff, 150+colDiff);
 		features.rect(X,Y+squareSize/2,squareSize,squareSize);
+	}  else if (featureType === 'MUD'){
+		features.fill(158+colDiff, 145+colDiff, 109+colDiff);
+		features.rect(X,Y+squareSize/2,squareSize,squareSize);
+	} else if (featureType === 'DARK ROCK'){
+		features.fill(146+colDiff, 161+colDiff, 150+colDiff, 170);
+		features.rect(X,Y+squareSize/2,squareSize,squareSize);
+	} else if (featureType === 'DARK GRASS'){
+		features.fill(120+colDiff, 176+colDiff, 121+colDiff, 170);
+		features.rect(X,Y+squareSize/2,squareSize,squareSize);
 	}
 }
 
@@ -146,6 +155,10 @@ function drawAccessoriesBeforePeople(){
 	for (var i in milestones){
 		milestones[i].draw();
 	}
+	for (var i in birds){
+		birds[i].update();
+		birds[i].draw();
+	}
 }
 
 function drawAccessoriesAfterPeople(){
@@ -179,4 +192,8 @@ function drawAccessoriesAfterPeople(){
 		fish[i].update();
 		fish[i].draw();
 	}
+	for (var i in bones){
+		bones[i].draw();
+	}
+	
 }

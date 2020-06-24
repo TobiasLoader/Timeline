@@ -15,6 +15,8 @@ let milestones;
 let specialClouds;
 let waterDroplets;
 let fish;
+let bones;
+let birds;
 let noticeHeight;
 
 let startAnim;
@@ -93,8 +95,8 @@ function draw() {
 		cursorType = 'default';
 		movePeople();
 		drawSky();
-		drawClouds();
 		drawEarth();
+		drawClouds();
 		drawAccessoriesBeforePeople();
 		drawPeople();
 		drawFeatures();

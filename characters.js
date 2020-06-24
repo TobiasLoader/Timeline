@@ -1,75 +1,76 @@
 
 function setupPeople(){
+	print(toby.x)
 	people = {
 	  	'Toby1': new Person(
 	  		'Toby1',
 	  		new Human(35,70,color(9, 168, 176)),
 	  		-2*squareSize,
 	  		ground-35,
-	  		7,
+	  		5,
 	  		false),
 	  	'Toby2': new Person(
 	  		'Toby2',
 	  		new Human(38,76,color(9, 168, 176)),
-	  		0,
+	  		toby.x,
 	  		ground-38,
-	  		8,
+	  		6,
 	  		false),
 	  	'Toby3': new Person(
 	  		'Toby3',
-	  		new Human(40,80,color(9, 168, 176)),
-	  		0,
+	  		new Human(45,90,color(9, 168, 176)),
+	  		toby.x,
 	  		ground-40,
-	  		8,
+	  		7,
 	  		false),
 	  	'Toby4': new Person(
 	  		'Toby4',
 	  		new Human(50,100,color(9, 168, 176)),
-	  		0,
+	  		toby.x,
 	  		ground-50,
-	  		9,
+	  		8,
 	  		false),
 	  	'Toby5': new Person(
 	  		'Toby5',
 	  		new Human(60,120,color(9, 168, 176)),
-	  		0,
+	  		toby.x,
 	  		ground-60,
-	  		10,
+	  		9,
 	  		false),
 	  	'Toby6': new Person(
 	  		'Toby6',
 	  		new Human(70,140,color(9, 168, 176)),
-	  		0,
+	  		toby.x,
 	  		ground-70,
-	  		11,
+	  		10,
 	  		false),
 	  	'Toby7': new Person(
 	  		'Toby7',
 	  		new Human(80,150,color(9, 168, 176)),
-	  		0,
+	  		toby.x,
 	  		ground-75,
-	  		11,
+	  		10,
 	  		false),
 	  	'Toby8': new Person(
 	  		'Toby8',
 	  		new Human(85,156,color(9, 168, 176)),
-	  		0,
+	  		toby.x,
 	  		ground-78,
-	  		11,
+	  		10,
 	  		false),
 	  	'Toby9': new Person(
 	  		'Toby9',
 	  		new Human(90,160,color(9, 168, 176)),
-	  		0,
+	  		toby.x,
 	  		ground-80,
-	  		11,
+	  		10,
 	  		false),
 	  	'Toby10': new Person(
 	  		'Toby10',
 	  		new Human(92,166,color(9, 168, 176)),
-	  		0,
+	  		toby.x,
 	  		ground-83,
-	  		11,
+	  		10,
 	  		false),
 	  	'Mother': new Person(
 	  		'Mother',
@@ -190,7 +191,7 @@ class Person {
 			}
 		} else {
 			if (this.vx>0){
-				if (this.footy()>=earthFloor(this.x)){
+				if (this.footy()>=earthFloor(this.x,this.footy())){
 					if (round(millis()/200)%3===0){
 						image(this.body.body.left1,this.x-sideX,this.y);
 					} else if (round(millis()/200)%3===1){
@@ -202,7 +203,7 @@ class Person {
 					image(this.body.body.leftJ,this.x-sideX,this.y);
 				}
 			} else if (this.vx<0) {
-				if (this.footy()>=earthFloor(this.x)){
+				if (this.footy()>=earthFloor(this.x,this.footy())){
 					if (round(millis()/200)%3===0){
 						image(this.body.body.right1,this.x-sideX,this.y);
 					} else if (round(millis()/200)%3===1){
@@ -233,14 +234,14 @@ class Person {
 	}	
 	
 	move(){
-		if (keyIsDown(32) && this.name===control && !startAnim){
+		if (keyIsDown(16) && this.name===control && !startAnim){
 			if (this.vx>=0){
 				this.vx = 2*this.maxvx;
 			} else {
 				this.vx = -2*this.maxvx;
 			}
 		}
-		if ((this.vx>0 && this.y+this.bodyH/2<=earthFloor(this.x+this.vx+this.bodyW/4) && this.x+this.bodyW/2<groundWidth) || (this.vx<0 && this.y+this.bodyH/2<=earthFloor(this.x+this.vx-this.bodyW/4) && this.x-this.bodyW/2>0)){
+		if ((this.vx>0 && this.y+this.bodyH/2<=earthFloor(this.x+this.vx+this.bodyW/4,this.footy()) && this.x+this.bodyW/2<groundWidth) || (this.vx<0 && this.y+this.bodyH/2<=earthFloor(this.x+this.vx-this.bodyW/4,this.footy()) && this.x-this.bodyW/2>0)){
 			this.x += this.vx;
 			if (control === this.name && !startAnim && this.vx>0 && this.x-sideX>W-startScrollDist && this.x<groundWidth-(W-(this.x-sideX))){
 				sideX += this.vx;
@@ -258,7 +259,7 @@ class Person {
 			}
 		} else {
 			if (this.vx>0){
-				if (this.footy()>=earthFloor(this.x)){
+				if (this.footy()>=earthFloor(this.x,this.footy())){
 					this.vx-=1;
 				}
 			}
@@ -269,24 +270,24 @@ class Person {
 			}
 		} else {
 			if (this.vx<0){
-				if (this.footy()>=earthFloor(this.x)){
+				if (this.footy()>=earthFloor(this.x,this.footy())){
 					this.vx+=1;
 				}
 			}
 		}
 		
-		if (keyIsDown(38) && control === this.name && !startAnim){
-			if (this.footy()>=earthFloor(this.x)){
-				this.vy = -1.5*this.maxvx;
+		if ((keyIsDown(38)||keyIsDown(32)) && control === this.name && !startAnim){
+			if (this.footy()>=earthFloor(this.x,this.footy())){
+				this.vy = -(10 + (this.bodyH-70)/15);
 			} else {
 				this.vy += 1;
 			}
 		} else {
 			
-			if (this.footy()<Math.min(earthFloor(this.x-this.bodyW/4),earthFloor(this.x),earthFloor(this.x+this.bodyW/4))){
+			if (this.footy()<Math.min(earthFloor(this.x-this.bodyW/4,this.footy()),earthFloor(this.x,this.footy()),earthFloor(this.x+this.bodyW/4,this.footy()))){
 				this.vy += 1;
 			} else {
-				this.y = this.heady(Math.min(earthFloor(this.x-this.bodyW/4),earthFloor(this.x),earthFloor(this.x+this.bodyW/4)));
+				this.y = this.heady(Math.min(earthFloor(this.x-this.bodyW/4,this.footy()),earthFloor(this.x,this.footy()),earthFloor(this.x+this.bodyW/4,this.footy())));
 				this.vy = 0;
 			}
 		}
@@ -307,8 +308,13 @@ class Person {
 			}
 		}
 */
-		if (this.name==='Daisy' && toby.x>milestone[3]+50*squareSize && toby.x<milestone[3]+75*squareSize && (this.x>=milestone[3]+45*squareSize||toby.vx>0) && (this.x<=milestone[3]+72*squareSize||toby.vx<0)){
-			this.vx = toby.vx;
+		if (this.name==='Daisy'){
+			if (toby.x>milestone[3]+50*squareSize && toby.x<milestone[3]+76*squareSize){
+				this.x = toby.x - 7*squareSize;
+				this.vx = toby.vx;
+			} else {
+				this.vx = 0;
+			}
 		}
 		
 		if (startAnim && this.name==='Toby1'){

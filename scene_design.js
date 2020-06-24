@@ -3,22 +3,23 @@ function setupScene(){
 	squareSize = 24;
   	ground = H-9*squareSize;
   	startScrollDist = 2*W/5;
-  	sideX = 0;
-  	groundWidth = 580*squareSize;
+  
+  	groundWidth = 600*squareSize;
   	control = 'Toby1';
   	toby = {x:0, y:0, vx:0, vy:0};
+  	sideX = 0;//216*squareSize
   	milestone  = [
 	  	2*squareSize,   // 0
-  		22*squareSize,  // 1
-  		62*squareSize,  // 2
-  		100*squareSize, // 3
-  		180*squareSize, // 4
-  		216*squareSize, // 5
-  		330*squareSize, // 6
-  		410*squareSize, // 7
-  		460*squareSize, // 8
-  		510*squareSize, // 9
-  		550*squareSize  // 10
+  		42*squareSize,  // 1
+  		82*squareSize,  // 2
+  		120*squareSize, // 3
+  		200*squareSize, // 4
+  		236*squareSize, // 5
+  		350*squareSize, // 6
+  		430*squareSize, // 7
+  		480*squareSize, // 8
+  		530*squareSize, // 9
+  		570*squareSize  // 10
   	];
   	milestoneAge = [
 	  	"0",
@@ -46,7 +47,8 @@ function locationFeatures(X,Y){
 	
 	/// MILESTONE 0
 	
-	if (X>=milestone[0]+5*squareSize && X<milestone[0]+13*squareSize && Y>=ground+3*squareSize && Y<ground+6*squareSize){return 'PAPER';}
+	if (X>=milestone[0]+4*squareSize && X<milestone[0]+14*squareSize && Y>=ground+3*squareSize && Y<ground+6*squareSize){return 'PAPER';}
+	if (X>=milestone[0]+22*squareSize && X<milestone[0]+32*squareSize && Y>=ground+3*squareSize && Y<ground+6*squareSize){return 'PAPER';}
 	
 	/// MILESTONE 1
 	
@@ -79,16 +81,28 @@ function locationFeatures(X,Y){
 	if (X>=milestone[3]+33*squareSize && X<milestone[3]+36*squareSize && Y>=ground-11*squareSize && Y<ground-10*squareSize){return 'DARK WOOD';}
 	if (X>=milestone[3]+35*squareSize && X<milestone[3]+38*squareSize && Y>=ground-12*squareSize && Y<ground-11*squareSize){return 'DARK WOOD';}
 	
+	if (X>=milestone[3]+67*squareSize && X<milestone[3]+71*squareSize && Y>=ground && Y<ground+4*squareSize){return 'MUD';}
+	
 	/// MILESTONE 4
 	
-	if (X>milestone[4]+5*squareSize && X<milestone[4]+30*squareSize && Y>=ground){
-		return 'WATER';
-	}
+	if (X>milestone[4]+5*squareSize && X<milestone[4]+30*squareSize && Y>=ground){return 'WATER';}
 	
 	/// MILESTONE 5
 	
+	if (X>=milestone[5]+23*squareSize && X<milestone[5]+28*squareSize && Y>=ground+1*squareSize && Y<ground+4*squareSize){return 'MUD';}
 	if (X>=milestone[5]+39*squareSize && X<milestone[5]+49*squareSize && Y>=ground-3*squareSize && Y<ground){return 'WATER';}
 	if (X>=milestone[5]+39*squareSize && X<milestone[5]+49*squareSize && Y>=ground && Y<ground+1*squareSize){return 'ROCK';}
+	if (X>=milestone[5]+52*squareSize && X<milestone[5]+74*squareSize && Y>=ground+6*squareSize && Y<ground+7*squareSize){return 'ROCK';}
+	if (X>=milestone[5]+51*squareSize && X<milestone[5]+52*squareSize && Y>=ground && Y<ground+6*squareSize){return 'ROCK';}
+	if (X>=milestone[5]+52*squareSize && X<milestone[5]+74*squareSize && Y>=ground && Y<ground+6*squareSize){return 'DARK ROCK';}
+	if (X>=milestone[5]+53*squareSize && X<milestone[5]+70*squareSize && Y>=ground-1*squareSize && Y<ground){return 'DARK ROCK';}
+	if (X>=milestone[5]+54*squareSize && X<milestone[5]+67*squareSize && Y>=ground-2*squareSize && Y<ground-1*squareSize){return 'DARK ROCK';}
+	if (X>=milestone[5]+56*squareSize && X<milestone[5]+62*squareSize && Y>=ground-3*squareSize && Y<ground-2*squareSize){return 'DARK ROCK';}
+	if (X>=milestone[5]+74*squareSize && X<milestone[5]+77*squareSize && Y>=ground+3*squareSize && Y<ground+6*squareSize){return 'DARK ROCK';}
+	if (X>=milestone[5]+74*squareSize && X<milestone[5]+79*squareSize && Y>=ground && Y<ground+1*squareSize){return 'DARK GRASS';}
+	if (X>=milestone[5]+74*squareSize && X<milestone[5]+79*squareSize && Y>=ground+1*squareSize && Y<ground+3*squareSize){return 'DARK ROCK';}
+
+
 	
 	/// MILESTONE 6
 	
@@ -125,9 +139,12 @@ function locationFeatures(X,Y){
 }
 
 
-function earthFloor(X){
+function earthFloor(X,Y){
 	
 	/// MILESTONE 0
+	
+	if (X>=milestone[0]+24*squareSize && X<milestone[0]+30*squareSize){ return ground-2*squareSize;}
+	if (X>=milestone[0]+21*squareSize && X<milestone[0]+33*squareSize){ return ground-1*squareSize;}
 	
 	/// MILESTONE 1
 	
@@ -151,7 +168,15 @@ function earthFloor(X){
 	/// MILESTONE 5
 	
 	if (X>=milestone[5]+4*squareSize && X<milestone[5]+39*squareSize){return ground-round(8*sin(180*(X-(milestone[5]+4*squareSize))/(40*squareSize)))*squareSize;}
-	if (X>=milestone[5]+49*squareSize && X<milestone[5]+74*squareSize){return ground-round(6*sin(180*(X-(milestone[5]+44*squareSize))/(30*squareSize)))*squareSize;}
+	if (X>=milestone[5]+49*squareSize && X<milestone[5]+74*squareSize){
+		if (X<milestone[5]+52*squareSize || Y<ground){
+			return ground-round(6*sin(180*(X-(milestone[5]+44*squareSize))/(30*squareSize)))*squareSize;
+		} else {
+			return ground+6*squareSize;
+		}
+	}
+	if (X>=milestone[5]+74*squareSize && X<milestone[5]+77*squareSize){return ground+6*squareSize;}
+	if (X>=milestone[5]+77*squareSize && X<milestone[5]+79*squareSize){return ground+3*squareSize;}
 	
 	/// MILESTONE 6
 	
@@ -188,10 +213,11 @@ function setupAccessories(){
 		'e2': new Flag(milestone[4]+35*squareSize,ground+3*squareSize,'e'),
 	};
 	writings = {
-		'1': new Writing(milestone[0]+4*squareSize,ground+3*squareSize,10*squareSize,6*squareSize,'Arrow Keys',[]),
-		'2': new Writing(milestone[6]+13*squareSize,ground-2*squareSize,13*squareSize,6*squareSize,'2016',['GCSE Maths - A* - 97.5%']),
-		'3': new Writing(milestone[6]+33*squareSize,ground-3*squareSize,13*squareSize,6*squareSize,'2017',['FSMQ Maths - A - 90%','GCSE Physics - A*','GCSE Chemistry - A*','GCSE Biology - A*','GCSE English - A']),
-		'4': new Writing(milestone[6]+53*squareSize,ground-4*squareSize,13*squareSize,6*squareSize,'2018',['A-Level French - A - 86%','GCSE Computer Science\nA* - 96PUM']),
+		'1': new Writing(milestone[0]+4*squareSize,ground+3*squareSize,10*squareSize,6*squareSize,'Arrow Keys to Move',[]),
+		'2': new Writing(milestone[0]+22*squareSize,ground+3*squareSize,10*squareSize,6*squareSize,'SPACEBAR to Jump',[]),
+		'3': new Writing(milestone[6]+13*squareSize,ground-2*squareSize,13*squareSize,6*squareSize,'2016',['GCSE Maths - A* - 97.5%']),
+		'4': new Writing(milestone[6]+33*squareSize,ground-3*squareSize,13*squareSize,6*squareSize,'2017',['FSMQ Maths - A - 90%','GCSE Physics - A*','GCSE Chemistry - A*','GCSE Biology - A*','GCSE English - A']),
+		'5': new Writing(milestone[6]+53*squareSize,ground-4*squareSize,13*squareSize,6*squareSize,'2018',['A-Level French - A - 86%','GCSE CS - A* - 96PUM']),
 
 	};
 	typings = {
@@ -237,5 +263,18 @@ function setupAccessories(){
 		'4' : new Fish(milestone[4]+5*squareSize,ground,25*squareSize,9*squareSize,color(232, 140, 74)),
 		'5' : new Fish(milestone[4]+5*squareSize,ground,25*squareSize,9*squareSize,color(232, 119, 7)),
 		'6' : new Fish(milestone[4]+5*squareSize,ground,25*squareSize,9*squareSize,color(232, 174, 74)),
+	};
+	bones = {
+		'1' : new Bone(milestone[3]+69*squareSize,ground+1.5*squareSize),
+		'2' : new Bone(milestone[3]+69*squareSize,ground+2.5*squareSize),
+		'3' : new Bone(milestone[5]+25*squareSize,ground+2*squareSize),
+		'4' : new Bone(milestone[5]+24*squareSize,ground+3*squareSize),
+		'5' : new Bone(milestone[5]+26*squareSize,ground+3*squareSize),
+		'6' : new Bone(milestone[5]+27*squareSize,ground+2*squareSize),
+	};
+	
+	birds = {
+		'1' : new Bird(W/2,5*squareSize,'R',4*squareSize,10),
+		'2' : new Bird(W/4,3*squareSize,'R',3*squareSize,15),
 	};
 }
