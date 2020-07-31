@@ -685,29 +685,163 @@ class Notice {
 	}
 	
 	move(){
-		if (toby.x>this.x && this.y+squareSize<this.finalY){
+		if (toby.x>this.x-4*squareSize && this.y<this.finalY){
 			this.y+=squareSize/2;
 		}
 	}
 }
 
+class Letter {
+	constructor (x,y,ey,w,h,title,content1,content2){
+		this.x = x;
+		this.finalY = y;
+		this.ey = ey;
+		this.w = w;
+		this.h = h;
+		this.y = ey;
+		this.t = 0;
+		
+		this.letter = createGraphics(this.w,this.h);
+		this.letter.stroke(163, 147, 139);
+// 		this.letter.line(this.w/4,0,this.w/4,this.h/2);
+// 		this.letter.line(3*this.w/4,0,3*this.w/4,this.h/2);
+		this.letter.rectMode(CORNER);
+		this.letter.fill(250, 249, 240);
+		this.letter.rect(1,1,this.w-2,this.h-2,2);
+		this.letter.stroke(252, 186, 3);
+		this.letter.fill(252, 186, 3, 150);
+		this.letter.beginShape();
+		for (var i=0; i<10; i+=1){
+			this.letter.vertex(0.4*(2-(i%2))*squareSize*cos(i/10 * 360) + this.w * 33/40, 0.4*(2-(i%2))*squareSize*sin(i/10 * 360) + this.h * 29/40);
+		}
+		this.letter.endShape();
+		this.letter.fill(77, 69, 65);
+		this.letter.textAlign(CENTER,CENTER);
+		this.letter.textFont('Inconsolata', 18);
+		if (content2){
+			this.letter.text(title,this.w/2,9*this.h/32);
+			this.letter.textSize(13);
+			this.letter.noStroke();
+			this.letter.text(content1,this.w/2,18*this.h/32);
+			this.letter.text(content2,this.w/2,23*this.h/32);
+		} else if (content1){
+			this.letter.text(title,this.w/2,11*this.h/32);
+			this.letter.textSize(13);
+			this.letter.noStroke();
+			this.letter.text(content1,this.w/2,21*this.h/32);
+		} else {
+			this.letter.text(title,this.w/2,this.h/2);
+		}
+		
+		this.behind = createGraphics(1.2*this.w,1.2*this.h);
+		this.behind.fill(240);
+		this.behind.stroke(150);
+		this.behind.rect(0,0,1.2*this.w-1,1.2*this.h-1);
+		
+		let Aflap = atan((0.7*this.h)/(0.5*this.w));
+		this.flapHeight = 2*(0.7*this.h+0.2*this.w/cos(90-Aflap));
+		this.flapO = createGraphics(1.2*this.w,this.flapHeight);
+		this.flapO.angleMode(DEGREES);
+		this.flapO.fill(250);
+		this.flapO.stroke(150);
+		this.flapO.beginShape();
+		this.flapO.vertex(0,(0.7*this.h+0.2*this.w/cos(90-Aflap)));
+		this.flapO.vertex(0.5*this.w,0.7*this.h + this.flapHeight/2);
+		this.flapO.vertex(0.7*this.w,0.7*this.h + this.flapHeight/2);
+		this.flapO.vertex(1.2*this.w,0*this.h + this.flapHeight/2);
+		this.flapO.endShape();
+		this.flapO.arc(0.6*this.w,0.7*this.h-0.1*this.w*tan(90-Aflap) + this.flapHeight/2,0.2*this.w/cos(90-Aflap),0.2*this.w/cos(90-Aflap),90-Aflap,90+Aflap);
+		
+		this.flapU = createGraphics(1.2*this.w,this.flapHeight);
+		this.flapU.angleMode(DEGREES);
+		this.flapU.fill(240);
+		this.flapU.stroke(150);
+		this.flapU.beginShape();
+		this.flapU.vertex(0,(0.7*this.h+0.2*this.w/cos(90-Aflap)));
+		this.flapU.vertex(0.5*this.w,0.7*this.h + this.flapHeight/2);
+		this.flapU.vertex(0.7*this.w,0.7*this.h + this.flapHeight/2);
+		this.flapU.vertex(1.2*this.w,0*this.h + this.flapHeight/2);
+		this.flapU.endShape();
+		this.flapU.arc(0.6*this.w,0.7*this.h-0.1*this.w*tan(90-Aflap) + this.flapHeight/2,0.2*this.w/cos(90-Aflap),0.2*this.w/cos(90-Aflap),90-Aflap,90+Aflap);
+
+		this.front = createGraphics(1.2*this.w,1.2*this.h);
+		this.front.angleMode(DEGREES);
+		this.front.fill(250);
+		this.front.stroke(150);
+		this.front.triangle(0,0,0,1.2*this.h,1.2*this.w/2,1.2*this.h/2);
+		this.front.triangle(1.2*this.w,0,1.2*this.w,1.2*this.h,1.2*this.w/2,1.2*this.h/2);
+		this.front.beginShape();
+		this.front.vertex(0,1.2*this.h);
+		this.front.vertex(0.5*this.w,0.5*this.h);
+		this.front.vertex(0.7*this.w,0.5*this.h);
+		this.front.vertex(1.2*this.w,1.2*this.h);
+		this.front.endShape();
+		let Afront = atan((0.7*this.h)/(0.5*this.w));
+		this.front.arc(0.6*this.w,0.5*this.h+0.1*this.w*tan(90-Afront),0.2*this.w/cos(90-Afront),0.2*this.w/cos(90-Afront),270-Afront,270+Afront);
+
+	}
+	
+	draw(){
+		imageMode(CENTER);
+		image(this.behind,this.x-sideX,this.ey);
+		if (this.t >= 0.5){
+			push();
+			translate(this.x-sideX,this.ey-this.flapHeight/4);
+			scale(1,-1);
+			image(this.flapU,0,0);
+			pop();
+		}
+		push();
+		translate(this.x-sideX,this.y);
+		if (this.t >= 0.5){
+			rotate(-3+360*(this.t-0.5)*2);
+		} else {
+			rotate(-3);
+		}
+		image(this.letter,0,0);
+		pop();
+		image(this.front,this.x-sideX,this.ey);
+		if (this.t<0.5){
+			push();
+			translate(this.x-sideX,this.ey-this.flapHeight/4);
+			scale(1,cos(2*180*this.t));
+			if (this.t<0.25){
+				image(this.flapO,0,0);
+			} else {
+				image(this.flapU,0,0);
+			}
+			pop();
+		}
+	}
+	
+	move(){
+		if (toby.x>this.x-4*squareSize && this.t<1){
+			this.t += 0.005;
+			if (this.t>0.5){
+				this.y = this.ey - sin(90*2*(this.t-0.5)) * (this.ey-this.finalY);
+			}
+		}
+	}
+}
+
 class Writing {
-	constructor (x,y,w,h,title,items,fontSize){
+	constructor (x,y,w,h,title,items,col){
 		this.x = x;
 		this.y = y;
 		this.w = w;
 		this.h = h;
-		
-		this.graphic = createGraphics(this.w,this.h);
-		this.graphic.fill(77, 69, 65);
-		this.graphic.noStroke();
-		this.graphic.textAlign(CENTER,CENTER);
-		if (fontSize){
-			this.graphic.textFont('Inconsolata', fontSize);
+		if (col){
+			this.col = col;
 		} else {
-			this.graphic.textFont('Inconsolata', 20);
+			this.col = color(77, 69, 65);
 		}
 		
+		this.graphic = createGraphics(this.w,this.h);
+		this.graphic.fill(this.col);
+		this.graphic.noStroke();
+		this.graphic.textAlign(CENTER,CENTER);
+		this.graphic.textFont('Inconsolata', 20);
+
 		this.graphic.text(title,this.w/2,this.h/4);
 		this.graphic.textSize(14);
 		this.graphic.textAlign(LEFT);
@@ -822,7 +956,7 @@ class SpecialCloud {
 		this.graphic.stroke(col2);
 		this.graphic.arc((4+4*sqrt(2))/6*this.h-1,5/6*this.h,2*this.h/6,2*this.h/6,-90,90);
 		this.graphic.arc((2+4*sqrt(2))/6*this.h,4/6*this.h,4*this.h/6,4*this.h/6,270,370);
-		this.graphic.line(2/6*this.h,this.h-1,(4+4*sqrt(2))/6*this.h,this.h-1);
+		this.graphic.line(2/6*this.h,this.h-2,(4+4*sqrt(2))/6*this.h,this.h-2);
 		this.graphic.noFill();
 		this.graphic.arc((2+2*sqrt(2))/6*this.h,3/6*this.h+1,this.h+20,this.h+20,207,218);
 		this.graphic.arc((2+2*sqrt(2))/6*this.h,3/6*this.h+1,this.h+33,this.h+33,206,219);
@@ -878,7 +1012,7 @@ class SpecialCloud {
 	}
 	
 	draw(){
-		image(this.graphic,this.x-sideX,this.y);
+		image(this.graphic,this.x-sideX+10*cos(millis()/4),this.y+10*sin(millis()/3));
 	}
 }
 
@@ -1045,7 +1179,7 @@ class Bird {
 		this.graphicR3 = createGraphics(this.w,this.h);
 		this.graphicR4 = createGraphics(this.w,this.h);
 	  	
-		this.graphicL1.fill(80,150);
+		this.graphicL1.fill(80,200);
 		this.graphicL1.noStroke();
 		this.graphicL1.beginShape();
 		this.graphicL1.curveVertex(this.w*0.63, this.h*0.44);
@@ -1096,7 +1230,7 @@ class Bird {
 		this.graphicL1.strokeWeight(2);
 		this.graphicL1.point(this.w*0.30,this.h*0.35);
 		
-		this.graphicL2.fill(80,150);
+		this.graphicL2.fill(80,200);
 		this.graphicL2.noStroke();
 		this.graphicL2.beginShape();
 		this.graphicL2.curveVertex(this.w*0.59, this.h*0.47);
@@ -1147,7 +1281,7 @@ class Bird {
 		this.graphicL2.strokeWeight(2);
 		this.graphicL2.point(this.w*0.30,this.h*0.41);
 		
-		this.graphicL3.fill(80,150);
+		this.graphicL3.fill(80,200);
 		this.graphicL3.noStroke();
 		this.graphicL3.beginShape();
 		this.graphicL3.curveVertex(this.w*0.71, this.h*0.38);
@@ -1198,7 +1332,7 @@ class Bird {
 		this.graphicL3.strokeWeight(2);
 		this.graphicL3.point(this.w*0.30,this.h*0.55);
 		
-		this.graphicL4.fill(80,150);
+		this.graphicL4.fill(80,200);
 		this.graphicL4.noStroke();
 		this.graphicL4.beginShape();
 		this.graphicL4.curveVertex(this.w*0.64, this.h*0.23);
@@ -1344,4 +1478,229 @@ image(this.graphicR4,this.x,this.y-0.20*this.h);
 }
 
 
+
+class Book {
+	constructor (){
+		this.wC = 28;
+		this.hC = 40;
+		this.bookClosed = createGraphics(this.wC,this.hC);
+		this.bookClosed.fill(82, 65, 44);
+		this.bookClosed.strokeWeight(1);
+		this.bookClosed.stroke(232, 200, 160);
+		this.bookClosed.rect(0,0,this.wC,this.hC,1);
+		this.bookClosed.line(7/20 * this.wC,5/14 * this.hC,13/20 * this.wC,5/14 * this.hC);
+		this.bookClosed.line(8/20 * this.wC,13/28 * this.hC,12/20 * this.wC,13/28 * this.hC);
+		this.bookClosed.fill(255,0,0);
+		this.bookClosed.noStroke();
+		this.bookClosed.rect(14/20 * this.wC,0,3/20 * this.wC,8/28 * this.hC);
+		
+		this.wO = 28;
+		this.hO = 40;
+		this.bookOpen = createGraphics(this.wO,this.hO);
+		this.bookOpen.strokeWeight(1);
+		this.bookOpen.fill(232, 200, 160);
+		this.bookOpen.stroke(82, 65, 44);
+		this.bookOpen.beginShape();
+		this.bookOpen.vertex(0,1/12 * this.hO);
+		this.bookOpen.vertex(this.wO,1/24 * this.hO);
+		this.bookOpen.vertex(this.wO,9/12 * this.hO);
+		this.bookOpen.vertex(0,10/12 * this.hO);
+		this.bookOpen.endShape();
+		this.bookOpen.fill(255,0,0);
+		this.bookOpen.noStroke();
+		this.bookOpen.rect(13/20 * this.wO,2/28 * this.hO,2/20 * this.wO,2/28 * this.hO);
+		this.bookOpen.stroke(232, 200, 160);
+		this.bookOpen.fill(82, 65, 44);
+		this.bookOpen.beginShape();
+		this.bookOpen.vertex(0,1/12 * this.hO);
+		this.bookOpen.vertex(21/24 * this.wO,2/12 * this.hO);
+		this.bookOpen.vertex(21/24 * this.wO,this.hO);
+		this.bookOpen.vertex(0,10/12 * this.hO);
+		this.bookOpen.endShape();
+		this.bookOpen.fill(255,0,0);
+		this.bookOpen.noStroke();
+		this.bookOpen.rect(12/20 * this.wO,5/28 * this.hO,3/20 * this.wO,5/28 * this.hO);
+		this.bookOpen.strokeWeight(1);
+		this.bookOpen.stroke(232, 200, 160);
+		this.bookOpen.line(4/20 * this.wO,11/28 * this.hO,11/20 * this.wO,12/28 * this.hO);
+		this.bookOpen.line(4/20 * this.wO,15/28 * this.hO,10/20 * this.wO,16/28 * this.hO);
+
+		this.bookOpenReverse = createGraphics(this.wO,this.hO);
+		this.bookOpenReverse.push();
+	  	this.bookOpenReverse.translate(this.wO/2,0);
+	  	this.bookOpenReverse.scale(-1,1);
+	  	this.bookOpenReverse.translate(-this.wO/2,0);
+	  	this.bookOpenReverse.copy(this.bookOpen,0,0,this.wO,this.hO,0,0,this.wO,this.hO);
+	  	this.bookOpenReverse.pop();
+	  	
+		
+
+/*
+		this.bookOpen.line(7,10,13,10);
+		this.bookOpen.line(8,13,12,13);
+		this.bookOpen.fill(255,0,0);
+		this.bookOpen.noStroke();
+		this.bookOpen.rect(14,0,3,8);
+*/
+	}
+	
+	draw(){
+		this.updatePos();
+		if (toby.vx===0 || this.x === people['Father'].x+25){
+			image(this.bookClosed,this.x-sideX,this.y);
+		} else {
+			if (toby.vx>0){
+				image(this.bookOpen,this.x-sideX,this.y);
+			} else {
+				image(this.bookOpenReverse,this.x-sideX,this.y);
+			}
+		}
+	}
+	
+	updatePos(){
+		if (toby.x > people['Father'].x){//(control === 'Toby6' || control === 'Toby7') && toby.x > people['Father'].x
+			if (toby.vx >= 0){
+				this.x = toby.x+25;
+			} else {
+				this.x = toby.x-25;
+			}
+			this.y = people[control].y+10;
+		} else {
+			this.x = people['Father'].x+25;
+			this.y = people['Father'].y+10;
+		}
+	}
+}
+
+
+class Coronavirus {
+	constructor (x,y,r){
+		this.x = x;
+		this.y = y;
+		this.r = r;
+		this.vy = random(2,2.5);
+		
+		this.graphic = createGraphics(this.r+4,this.r+4);
+
+		this.graphic.noStroke();
+		this.graphic.fill(80,80,80);
+		this.graphic.stroke(227, 125, 102);
+		this.graphic.strokeWeight(2);
+		this.graphic.ellipse((this.r+4)/2,(this.r+4)/2,9*this.r/10,9*this.r/10);
+		this.graphic.strokeWeight(5);
+		this.graphic.stroke(255,255,255,50);
+		for (var i=0; i<100; i+=1){
+			let randomRadius = pow(random(0,this.r/2),1/4)*pow(this.r/2,3/4);
+			let randomAngle = random(0,360);
+			this.graphic.point((this.r+4)/2 + randomRadius*cos(randomAngle), (this.r+4)/2 + randomRadius*sin(randomAngle));
+		}
+		this.graphic.stroke(227, 125, 102);
+
+		for (var i=0; i<10; i+=1){
+			let randomRadius = pow(random(0,this.r/2),1/3)*pow(this.r/2,2/3);
+			let randomAngle = random(0,360);
+			this.graphic.point((this.r+4)/2 + randomRadius*cos(randomAngle), (this.r+4)/2 + randomRadius*sin(randomAngle));
+		}
+		this.graphic.noStroke();
+		this.graphic.fill(191,18,36);
+		this.graphic.strokeWeight(1);
+		this.graphic.stroke(227, 125, 102);
+		for (var i=0; i<8; i+=1){
+			let randomRadius = pow(random(0,this.r/2),1/2)*pow(this.r/2,1/2);
+			let randomAngle = i*(360/8);
+			let randomOrientation = random(0,60);
+			this.graphic.beginShape();
+			this.graphic.vertex((this.r+4)/2 + randomRadius*cos(randomAngle) + this.r/10 * cos(randomOrientation),(this.r+4)/2 + randomRadius*sin(randomAngle) + this.r/10 * sin(randomOrientation));
+			this.graphic.vertex((this.r+4)/2 + randomRadius*cos(randomAngle) + this.r/10 * cos(randomOrientation+120),(this.r+4)/2 + randomRadius*sin(randomAngle) + this.r/10 * sin(randomOrientation+120));
+			this.graphic.vertex((this.r+4)/2 + randomRadius*cos(randomAngle) + this.r/10 * cos(randomOrientation+240),(this.r+4)/2 + randomRadius*sin(randomAngle) + this.r/10 * sin(randomOrientation+240));
+			this.graphic.endShape();
+		}
+	}
+	draw(){
+		push();
+		translate(this.x-sideX,this.y);
+		rotate(this.y);
+		image(this.graphic,0,0);
+		pop();
+	}
+	update(){
+		this.y += this.vy;
+		if (this.y > H+this.r){
+			this.y = -this.r;
+		}
+	}
+}
+
+class Monitor {
+	constructor(x,y,letter){
+		this.x = x;
+		this.y = y;
+			
+		this.graphic = createGraphics(14*squareSize,12*squareSize);
+		this.graphic.fill(215);
+		this.graphic.stroke(120);
+		this.graphic.beginShape();
+		this.graphic.vertex(5*squareSize,12*squareSize);
+		this.graphic.vertex(9*squareSize,12*squareSize);
+		this.graphic.vertex(7*squareSize,2*squareSize);
+		this.graphic.vertex(5*squareSize,12*squareSize);
+		this.graphic.endShape();
+		this.graphic.rect(0,0,14*squareSize-1,9*squareSize,5);
+		this.graphic.fill(50);
+		this.graphic.rect(squareSize,squareSize,12*squareSize,7*squareSize,4)
+		this.graphic.rect(1.2*squareSize,1.2*squareSize,11.6*squareSize,6.6*squareSize)
+		this.graphic.strokeWeight(3);
+		this.graphic.stroke(50);
+		this.graphic.point(7*squareSize,0.5*squareSize);
+	}
+	
+	draw(){
+		image(this.graphic,this.x-sideX,this.y);
+	}
+}
+
+
+class KeyboardCase {
+	constructor(x,y,letter){
+		this.x = x;
+		this.y = y;
+		
+		this.graphic = createGraphics(14*squareSize,1*squareSize);
+		this.graphic.fill(215);
+		this.graphic.noStroke();
+		this.graphic.rect(0,0,14*squareSize,1*squareSize,3);
+	}
+	
+	draw(){
+		image(this.graphic,this.x-sideX,this.y);
+	}
+}
+
+class KeyboardKey {
+	constructor(x,y,letter){
+		this.x = x;
+		this.y = y;
+		this.letter = letter;
+		
+		this.graphic = createGraphics(2*squareSize,2*squareSize);
+		this.graphic.fill(90);
+		this.graphic.stroke(90);
+		this.graphic.rect(0,squareSize,2*squareSize,4*squareSize/5);
+		this.graphic.rect(2*squareSize/5,4*squareSize/5,6*squareSize/5,squareSize/5);
+		this.graphic.arc(2*squareSize/5+1,squareSize+1,4*squareSize/5,2*squareSize/5,PI,3*PI/2);
+		this.graphic.arc(8*squareSize/5-1,squareSize+1,4*squareSize/5,2*squareSize/5,3*PI/2,2*PI);
+		this.graphic.fill(250);
+		this.graphic.noStroke();
+		this.graphic.textFont('Inconsolata', 18);
+		this.graphic.textAlign(CENTER,CENTER);
+		this.graphic.text(this.letter,squareSize,13*squareSize/10);
+	}
+	
+	draw(){
+		push();
+		scale(1,3/4);
+		image(this.graphic,this.x-sideX,4/3*this.y);
+		pop();
+	}
+}
 

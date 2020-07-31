@@ -95,6 +95,7 @@ function draw() {
 		cursorType = 'default';
 		movePeople();
 		drawSky();
+		drawAccessoriesBeforeEarth();
 		drawEarth();
 		drawClouds();
 		drawAccessoriesBeforePeople();

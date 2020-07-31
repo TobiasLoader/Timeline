@@ -55,8 +55,13 @@ function setupEarth(){
 					// ROCK
 					earth.fill(146+colDiff, 161+colDiff, 150+colDiff);
 				} else {
-					// GRASS
-					earth.fill(120+colDiff, 176+colDiff, 121+colDiff);
+					if (random(0,1)>0.001){
+						// GRASS
+						earth.fill(120+colDiff, 176+colDiff, 121+colDiff);
+					} else {
+						// GOLD
+						earth.fill(227+colDiff, 191+colDiff, 84+colDiff);
+					}
 				}
 				earth.rect(x,y+squareSize/2,squareSize,squareSize);
 			} else {
@@ -117,6 +122,9 @@ function buildFeatures(X,Y){
 	} else if (featureType === 'DARK GRASS'){
 		features.fill(120+colDiff, 176+colDiff, 121+colDiff, 170);
 		features.rect(X,Y+squareSize/2,squareSize,squareSize);
+	} else if (featureType === 'CORONA RED'){
+		features.fill(207+2*colDiff, 78+2*colDiff, 78+2*colDiff);
+		features.rect(X,Y+squareSize/2,squareSize,squareSize);
 	}
 }
 
@@ -151,6 +159,14 @@ function progressBar(){
 	pop();
 }
 
+function drawAccessoriesBeforeEarth(){
+	for (var i in coronaviruses){
+		coronaviruses[i].draw();
+		coronaviruses[i].update();
+	}
+}
+
+
 function drawAccessoriesBeforePeople(){
 	for (var i in milestones){
 		milestones[i].draw();
@@ -158,6 +174,9 @@ function drawAccessoriesBeforePeople(){
 	for (var i in birds){
 		birds[i].update();
 		birds[i].draw();
+	}
+	for (var i in monitors){
+		monitors[i].draw();
 	}
 }
 
@@ -195,5 +214,19 @@ function drawAccessoriesAfterPeople(){
 	for (var i in bones){
 		bones[i].draw();
 	}
+	for (var i in books){
+		books[i].draw();
+	}
 	
+	for (var i in keyboardCases){
+		keyboardCases[i].draw();
+	}
+	for (var i in keyboardKeys){
+		keyboardKeys[i].draw();
+	}
+	
+	for (var i in letters){
+		letters[i].move();
+		letters[i].draw();
+	}
 }

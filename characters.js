@@ -1,6 +1,5 @@
 
 function setupPeople(){
-	print(toby.x)
 	people = {
 	  	'Toby1': new Person(
 	  		'Toby1',
@@ -224,6 +223,7 @@ class Person {
 			text(this.name,this.x-sideX,this.y-this.bodyH/2-20);
 		}
 		
+/*
 		if (control !== this.name && mouseX>this.x-sideX-this.bodyW/2 && mouseX<this.x-sideX+this.bodyW/2 && mouseY>this.y-this.bodyH/2 && mouseY<this.y+this.bodyH/2){
 			cursorType = 'pointer';
 			if (mouseIsPressed){
@@ -231,6 +231,21 @@ class Person {
 				this.vy = -2*this.maxvx;
 			}
 		}
+*/
+		
+/*
+		if (this.name.slice(0,4) === 'Toby' && toby.x > people['Father'].x){
+			fill(82, 65, 44);
+			strokeWeight(1);
+			stroke(232, 200, 160);
+			rect(this.x-sideX+15,this.y-5,20,28,2);
+			line(this.x-sideX+22,this.y+5,this.x-sideX+28,this.y+5);
+			line(this.x-sideX+23,this.y+8,this.x-sideX+27,this.y+8);
+			fill(255,0,0);
+			noStroke();
+			rect(this.x-sideX+29,this.y-5,3,8);
+		}
+*/
 	}	
 	
 	move(){
@@ -276,14 +291,13 @@ class Person {
 			}
 		}
 		
-		if ((keyIsDown(38)||keyIsDown(32)) && control === this.name && !startAnim){
+		if ((keyIsDown(38)||keyIsDown(32)) && control === this.name && !startAnim && !(this.x>=milestone[5]+49*squareSize && this.x<milestone[5]+74*squareSize && this.y>ground)){
 			if (this.footy()>=earthFloor(this.x,this.footy())){
 				this.vy = -(10 + (this.bodyH-70)/15);
 			} else {
 				this.vy += 1;
 			}
 		} else {
-			
 			if (this.footy()<Math.min(earthFloor(this.x-this.bodyW/4,this.footy()),earthFloor(this.x,this.footy()),earthFloor(this.x+this.bodyW/4,this.footy()))){
 				this.vy += 1;
 			} else {

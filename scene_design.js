@@ -4,7 +4,7 @@ function setupScene(){
   	ground = H-9*squareSize;
   	startScrollDist = 2*W/5;
   
-  	groundWidth = 600*squareSize;
+  	groundWidth = 670*squareSize;
   	control = 'Toby1';
   	toby = {x:0, y:0, vx:0, vy:0};
   	sideX = 0;//216*squareSize
@@ -18,8 +18,8 @@ function setupScene(){
   		350*squareSize, // 6
   		430*squareSize, // 7
   		480*squareSize, // 8
-  		530*squareSize, // 9
-  		570*squareSize  // 10
+  		555*squareSize, // 9
+  		650*squareSize  // 10
   	];
   	milestoneAge = [
 	  	"0",
@@ -32,10 +32,10 @@ function setupScene(){
 	  	"16",
 	  	"17",
 	  	"18",
-	  	"present"
+	  	"now"
   	]
-  	if (ground-12*squareSize>6*squareSize){
-  		noticeHeight = ground-12*squareSize;
+  	if (ground-14*squareSize>6*squareSize){
+  		noticeHeight = ground-14*squareSize;
   	} else {
 	  	noticeHeight = 6*squareSize;
   	}
@@ -56,7 +56,7 @@ function locationFeatures(X,Y){
 	
 	/// MILESTONE 2
 	
-	if (X>=milestone[2]+10*squareSize && X<milestone[2]+28*squareSize && Y>=ground-1*squareSize && Y<ground+3*squareSize){ return 'PAPER';}
+// 	if (X>=milestone[2]+10*squareSize && X<milestone[2]+28*squareSize && Y>=ground-1*squareSize && Y<ground+3*squareSize){ return 'PAPER';}
 
 	/// MILESTONE 3
 	
@@ -114,12 +114,17 @@ function locationFeatures(X,Y){
 	
 	if (X>milestone[7]+15*squareSize && X<milestone[7]+37*squareSize && Y>=ground-2*squareSize && Y<ground){return 'BRICK';}
 	if (X>milestone[7]+15*squareSize && X<milestone[7]+37*squareSize && Y>=ground-7*squareSize && Y<ground-2*squareSize){return 'DARK BRICK';}
+	if (X>milestone[7]+18*squareSize && X<milestone[7]+34*squareSize && Y>=ground-10*squareSize && Y<ground-8*squareSize){return 'WHITE';}
 	if (X>milestone[7]+15*squareSize && X<milestone[7]+37*squareSize && Y>=ground-11*squareSize && Y<ground-7*squareSize){return 'BRICK';}
 	if (X>milestone[7]+14*squareSize && X<milestone[7]+38*squareSize && Y>=ground-17*squareSize && Y<ground-11*squareSize && (Y-(ground-12*squareSize))>-2*((5*squareSize)/(38*squareSize))*(X-(milestone[7]+12*squareSize)) && (Y-(ground-12*squareSize))>2*((5*squareSize)/(38*squareSize))*(X-(milestone[7]+40*squareSize))){return 'TILE';}
 	
 	/// MILESTONE 8
 	
+	if (X>=milestone[8]+32*squareSize && X<milestone[8]+48*squareSize && Y>=ground-2*squareSize && Y<ground+7*squareSize){return 'PAPER';}
+	
 	/// MILESTONE 9
+	
+	if (X>=milestone[9]+55*squareSize && X<milestone[9]+65*squareSize && Y>=ground && Y<ground+1*squareSize){return 'CORONA RED';}
 	
 	/// MILESTONE 10
 	
@@ -150,7 +155,7 @@ function earthFloor(X,Y){
 	
 	/// MILESTONE 2
 	
-	if (X>=milestone[2]+9*squareSize && X<milestone[2]+29*squareSize){ return ground-2*squareSize;}
+// 	if (X>=milestone[2]+9*squareSize && X<milestone[2]+29*squareSize){ return ground-2*squareSize;}
 	
 	/// MILESTONE 3
 	
@@ -188,6 +193,8 @@ function earthFloor(X,Y){
 	
 	/// MILESTONE 8
 	
+	if (X>=milestone[8]+31*squareSize && X<milestone[8]+49*squareSize){return ground-3*squareSize;}
+	
 	/// MILESTONE 9
 	
 	/// MILESTONE 10
@@ -215,29 +222,33 @@ function setupAccessories(){
 	writings = {
 		'1': new Writing(milestone[0]+4*squareSize,ground+3*squareSize,10*squareSize,6*squareSize,'Arrow Keys to Move',[]),
 		'2': new Writing(milestone[0]+22*squareSize,ground+3*squareSize,10*squareSize,6*squareSize,'SPACEBAR to Jump',[]),
-		'3': new Writing(milestone[6]+13*squareSize,ground-2*squareSize,13*squareSize,6*squareSize,'2016',['GCSE Maths - A* - 97.5%']),
+		'3': new Writing(milestone[6]+13*squareSize,ground-1.5*squareSize,13*squareSize,6*squareSize,'2016',['GCSE Maths - A* - 97.5%']),
 		'4': new Writing(milestone[6]+33*squareSize,ground-3*squareSize,13*squareSize,6*squareSize,'2017',['FSMQ Maths - A - 90%','GCSE Physics - A*','GCSE Chemistry - A*','GCSE Biology - A*','GCSE English - A']),
-		'5': new Writing(milestone[6]+53*squareSize,ground-4*squareSize,13*squareSize,6*squareSize,'2018',['A-Level French - A - 86%','GCSE CS - A* - 96PUM']),
+		'5': new Writing(milestone[6]+53*squareSize,ground-3.5*squareSize,13*squareSize,6*squareSize,'2018',['A-Level French - A - 86%','GCSE CS - A* - 96PUM']),
+		'6': new Writing(milestone[7]+16*squareSize,ground-10.5*squareSize,21*squareSize,6*squareSize,'QUEEN ELIZABETH GRAMMAR SCHOOL',[],color(48, 111, 206)),
+		'7': new Writing(milestone[8]+32*squareSize,ground-1.5*squareSize,16*squareSize,4*squareSize,'Achieved:',["AS Computer Science - A - 92PUM"]),
+		'8': new Writing(milestone[8]+32*squareSize,ground+2*squareSize,16*squareSize,4*squareSize,'Predicted:',["A-Level Mathematics - A*","A-Level Further Mathematics - A*","A-Level Physics - A*"]),
 
 	};
 	typings = {
-		'1': new Typing(milestone[2]+10*squareSize,ground-4*squareSize,18*squareSize,10*squareSize,'print("Hello World!")',26,color(9, 168, 176)),
+		'1': new Typing(milestone[2]+10.5*squareSize,ground-12.5*squareSize,18*squareSize,10*squareSize,'print("Hello World!");',19,color(200)),
 	};
 	notices = {
 		'0': new Notice(milestone[0]+8.8*squareSize,noticeHeight,8*squareSize,4*squareSize,'2002',"Firstly I was born..."),
 		'5': new Notice(milestone[1],noticeHeight,8*squareSize,4*squareSize,"Moved to France"),
-		'8': new Notice(milestone[2],noticeHeight,8*squareSize,4*squareSize,"Started coding"),
+		'8': new Notice(milestone[2],noticeHeight,9*squareSize,4*squareSize,"Started coding","(Codecademy & Khan Academy)"),
 		'9': new Notice(milestone[3],noticeHeight,8*squareSize,4*squareSize,"Climbed trees\nwith my brother"),
 		'9a': new Notice(milestone[3]+55*squareSize,noticeHeight,8*squareSize,4*squareSize,"Daisy joined\nthe family"),
 		'12': new Notice(milestone[4],noticeHeight,8*squareSize,4*squareSize,"Moved back\nto the UK"),
 		'13': new Notice(milestone[5],noticeHeight,8*squareSize,4*squareSize,"Settled in\nCumbria"),
 		'13a': new Notice(milestone[5]+91*squareSize,noticeHeight,8*squareSize,4*squareSize,"Began\nHome-Education"),
 		'14': new Notice(milestone[6],noticeHeight,8*squareSize,4*squareSize,"Sat GCSEs and\nA-Level French"),
-		'16': new Notice(milestone[7],noticeHeight,8*squareSize,4*squareSize,"Went to\nSixth-Form"),
+		'16': new Notice(milestone[7],noticeHeight,8*squareSize,4*squareSize,"Started at\nSixth-Form"),
 		'17': new Notice(milestone[8],noticeHeight,8*squareSize,4*squareSize,"Landed work\nexperience"),
-		'17a': new Notice(milestone[8]+35*squareSize,noticeHeight,8*squareSize,4*squareSize,"Sat AS\nComputer Science"),
-		'18': new Notice(milestone[9],noticeHeight,8*squareSize,4*squareSize,"A-Levels got\ncancelled"),
-		'18a': new Notice(milestone[9]+20*squareSize,noticeHeight,8*squareSize,4*squareSize,"Got an offer\n@ Oxford Uni!"),
+		'17a': new Notice(milestone[8]+40*squareSize,noticeHeight,8*squareSize,4*squareSize,"End of Y12"),
+		'18': new Notice(milestone[9],noticeHeight,8*squareSize,4*squareSize,"Y13","Final school year"),
+// 		'18a': new Notice(milestone[9]+30*squareSize,noticeHeight,8*squareSize,4*squareSize,"Oxford Offer!","(MMathCompSci)"),
+		'18a': new Notice(milestone[9]+60*squareSize,noticeHeight,9*squareSize,4*squareSize,"A-Levels cancelled","(COVID-19)"),
 		'18b': new Notice(milestone[10],noticeHeight,8*squareSize,4*squareSize,'RIGHT NOW!', "You're all up to date!"),
 	};
 	milestones = {};
@@ -277,4 +288,34 @@ function setupAccessories(){
 		'1' : new Bird(W/2,5*squareSize,'R',4*squareSize,10),
 		'2' : new Bird(W/4,3*squareSize,'R',3*squareSize,15),
 	};
+	
+	books = {
+		'1' : new Book(),
+	};
+	
+	coronaviruses = {};
+	for (var i=0; i<15; i+=1){
+		coronaviruses[str(i)] = new Coronavirus(milestone[9]+random(-5*squareSize,5*squareSize)+60*squareSize,random(0,ground),random(0.7*squareSize,2*squareSize));
+	}
+	
+	monitors = {
+		'1' : new Monitor(milestone[2]+19.5*squareSize,ground-6*squareSize),
+	}
+
+	keyboardCases = {
+		'1' : new KeyboardCase(milestone[2]+19.5*squareSize,ground+0.5*squareSize),
+	}
+	
+	keyboardKeys = {
+		'Q' : new KeyboardKey(milestone[2]+14*squareSize,ground-0.2*squareSize,'Q'),
+		'W' : new KeyboardKey(milestone[2]+16.2*squareSize,ground-0.2*squareSize,'W'),
+		'E' : new KeyboardKey(milestone[2]+18.4*squareSize,ground-0.2*squareSize,'E'),
+		'R' : new KeyboardKey(milestone[2]+20.6*squareSize,ground-0.2*squareSize,'R'),
+		'T' : new KeyboardKey(milestone[2]+22.8*squareSize,ground-0.2*squareSize,'T'),
+		'Y' : new KeyboardKey(milestone[2]+25*squareSize,ground-0.2*squareSize,'Y')
+	};
+	
+	letters = {
+		'0': new Letter(milestone[9]+30*squareSize,noticeHeight,ground+3*squareSize,8*squareSize,5*squareSize,"Oxford Offer!","MMathCompSci     "),
+	}
 }
