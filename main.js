@@ -38,10 +38,13 @@ let loaded;
 let loadtime;
 let graphicsCreated;
 
+let browserMessage;
+
 function setup() {
   	W = window.innerWidth;
   	H = window.innerHeight;
   	canvas = createCanvas(W, H);
+  	browserMessage = false;
   	startAnim = true;
   	angleMode(DEGREES);
   	textAlign(CENTER,CENTER);
@@ -68,8 +71,6 @@ function loading(){
 }
  
 function buildGraphics(){
-	
-  	
   	setupClouds();
   	setupEarth();
   	setupSky();
@@ -91,18 +92,27 @@ function draw() {
 		loaded = true;
 	}
 	if (loaded){
-		cursor(cursorType);
-		cursorType = 'default';
-		movePeople();
-		drawSky();
-		drawAccessoriesBeforeEarth();
-		drawEarth();
-		drawClouds();
-		drawAccessoriesBeforePeople();
-		drawPeople();
-		drawFeatures();
-		drawAccessoriesAfterPeople();
-		progressBar();
+		print('hello');
+		if (!browserMessage){
+			background(250, 249, 240);
+			fill(9, 168, 176);
+			textFont('Inconsolata',20);
+			text('Browser Compatibility:\n\nSafari not Compatible\nChrome is Compatible',W/2,3*H/7);
+			text('CLICK',W/2,6*H/7);
+		} else {
+			cursor(cursorType);
+			cursorType = 'default';
+			movePeople();
+			drawSky();
+			drawAccessoriesBeforeEarth();
+			drawEarth();
+			drawClouds();
+			drawAccessoriesBeforePeople();
+			drawPeople();
+			drawFeatures();
+			drawAccessoriesAfterPeople();
+			progressBar();
+		}
 	} else {
 		loading();
 	}
@@ -129,3 +139,9 @@ window.onresize = function() {
   	
 // 	buildGraphics();
 };
+
+function mouseClicked() {
+	if (loaded){
+		browserMessage = true;
+	}
+}
