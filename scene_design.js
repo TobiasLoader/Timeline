@@ -260,7 +260,7 @@ function setupAccessories(){
 		}
 	}
 	specialClouds = {
-		'1' : new SpecialCloud(milestone[8]+17*squareSize,8*squareSize,9*squareSize,"Worked on a Masters level project on\nCloud Computing and Cryptocurrency,\nfor which I was awarded a Distinction.",14,color(245,245,245),color(185, 41, 59))
+		'1' : new SpecialCloud(milestone[8]+17*squareSize,8*squareSize,9*squareSize,"Masters level project involving\nCloud Computing and Cryptocurrency\nthrough the departement of/nComputer Science.",14,color(245,245,245),color(185, 41, 59))
 	};
 	waterDroplets = {
 		'1' : new WaterDroplet(milestone[5]+39*squareSize,ground-3*squareSize,10*squareSize,3*squareSize),
