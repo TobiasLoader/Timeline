@@ -227,7 +227,7 @@ function setupAccessories(){
 		'5': new Writing(milestone[6]+53*squareSize,ground-3.5*squareSize,13*squareSize,6*squareSize,'2018',['A-Level French - A - 86%','GCSE CS - A* - 96PUM']),
 		'6': new Writing(milestone[7]+16*squareSize,ground-10.5*squareSize,21*squareSize,6*squareSize,'QUEEN ELIZABETH GRAMMAR SCHOOL',[],color(48, 111, 206)),
 		'7': new Writing(milestone[8]+32*squareSize,ground-1.5*squareSize,16*squareSize,4*squareSize,'Achieved:',["AS Computer Science - A - 92PUM"]),
-		'8': new Writing(milestone[8]+32*squareSize,ground+2*squareSize,16*squareSize,4*squareSize,'Predicted:',["A-Level Mathematics - A*","A-Level Further Mathematics - A*","A-Level Physics - A*"]),
+		'8': new Writing(milestone[8]+32*squareSize,ground+2*squareSize,16*squareSize,4*squareSize,'Predicted (Awarded in Y13):',["A-Level Mathematics - A*","A-Level Further Mathematics - A*","A-Level Physics - A*"]),
 
 	};
 	typings = {
