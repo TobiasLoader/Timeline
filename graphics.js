@@ -1558,7 +1558,7 @@ class Book {
 	}
 	
 	updatePos(){
-		if (toby.x > people['Father'].x && toby.x<milestone[8]){//(control === 'Toby6' || control === 'Toby7') && toby.x > people['Father'].x
+		if (toby.x > people['Father'].x && toby.x<milestone[7]){//(control === 'Toby6' || control === 'Toby7') && toby.x > people['Father'].x
 			if (toby.vx >= 0){
 				this.x = toby.x+25;
 			} else {
