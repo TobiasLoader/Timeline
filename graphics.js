@@ -816,7 +816,7 @@ class Letter {
 	
 	move(){
 		if (toby.x>this.x-4*squareSize && this.t<1){
-			this.t += 0.005;
+			this.t += 0.02;
 			if (this.t>0.5){
 				this.y = this.ey - sin(90*2*(this.t-0.5)) * (this.ey-this.finalY);
 			}
@@ -1495,7 +1495,7 @@ class Book {
 		this.bookClosed.rect(14/20 * this.wC,0,3/20 * this.wC,8/28 * this.hC);
 		
 		this.wO = 28;
-		this.hO = 40;
+		this.hO = 50;
 		this.bookOpen = createGraphics(this.wO,this.hO);
 		this.bookOpen.strokeWeight(1);
 		this.bookOpen.fill(232, 200, 160);
@@ -1558,7 +1558,7 @@ class Book {
 	}
 	
 	updatePos(){
-		if (toby.x > people['Father'].x){//(control === 'Toby6' || control === 'Toby7') && toby.x > people['Father'].x
+		if (toby.x > people['Father'].x && toby.x<milestone[8]){//(control === 'Toby6' || control === 'Toby7') && toby.x > people['Father'].x
 			if (toby.vx >= 0){
 				this.x = toby.x+25;
 			} else {

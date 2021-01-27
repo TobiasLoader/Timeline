@@ -4,7 +4,7 @@ function setupScene(){
   	ground = H-9*squareSize;
   	startScrollDist = 2*W/5;
   
-  	groundWidth = 670*squareSize;
+  	groundWidth = 725*squareSize;
   	control = 'Toby1';
   	toby = {x:0, y:0, vx:0, vy:0};
   	sideX = 0;//216*squareSize
@@ -18,8 +18,9 @@ function setupScene(){
   		350*squareSize, // 6
   		430*squareSize, // 7
   		480*squareSize, // 8
-  		555*squareSize, // 9
-  		650*squareSize  // 10
+  		550*squareSize, // 9
+  		660*squareSize, // 10
+  		710*squareSize  // 11
   	];
   	milestoneAge = [
 	  	"0",
@@ -32,6 +33,7 @@ function setupScene(){
 	  	"16",
 	  	"17",
 	  	"18",
+	  	"19",
 	  	"now"
   	]
   	if (ground-14*squareSize>6*squareSize){
@@ -120,15 +122,18 @@ function locationFeatures(X,Y){
 	
 	/// MILESTONE 8
 	
-	if (X>=milestone[8]+32*squareSize && X<milestone[8]+48*squareSize && Y>=ground-2*squareSize && Y<ground+7*squareSize){return 'PAPER';}
+	if (X>=milestone[8]+32*squareSize && X<milestone[8]+48*squareSize && Y>=ground-2*squareSize && Y<ground+2*squareSize){return 'PAPER';}
 	
 	/// MILESTONE 9
 	
-	if (X>=milestone[9]+55*squareSize && X<milestone[9]+65*squareSize && Y>=ground && Y<ground+1*squareSize){return 'CORONA RED';}
+	if (X>=milestone[9]+45*squareSize && X<milestone[9]+55*squareSize && Y>=ground && Y<ground+1*squareSize){return 'CORONA RED';}
+	if (X>=milestone[9]+72*squareSize && X<milestone[9]+88*squareSize && Y>=ground-2*squareSize && Y<ground+5*squareSize){return 'PAPER';}
 	
 	/// MILESTONE 10
 	
+	if (X>=milestone[10]+17*squareSize && X<milestone[10]+33*squareSize && Y>=ground-2*squareSize && Y<ground+2*squareSize){return 'PAPER';}
 	
+	/// MILESTONE 11
 	
 	
 	// MILESTONES
@@ -197,7 +202,11 @@ function earthFloor(X,Y){
 	
 	/// MILESTONE 9
 	
+	if (X>=milestone[9]+71*squareSize && X<milestone[9]+89*squareSize){return ground-3*squareSize;}		
+
 	/// MILESTONE 10
+	
+	if (X>=milestone[10]+16*squareSize && X<milestone[10]+34*squareSize){return ground-3*squareSize;}	
 
 	return ground;
 }
@@ -222,12 +231,13 @@ function setupAccessories(){
 	writings = {
 		'1': new Writing(milestone[0]+4*squareSize,ground+3*squareSize,10*squareSize,6*squareSize,'Arrow Keys to Move',[]),
 		'2': new Writing(milestone[0]+22*squareSize,ground+3*squareSize,10*squareSize,6*squareSize,'SPACEBAR to Jump',[]),
-		'3': new Writing(milestone[6]+13*squareSize,ground-1.5*squareSize,13*squareSize,6*squareSize,'2016',['GCSE Maths - A* - 97.5%']),
-		'4': new Writing(milestone[6]+33*squareSize,ground-3*squareSize,13*squareSize,6*squareSize,'2017',['FSMQ Maths - A - 90%','GCSE Physics - A*','GCSE Chemistry - A*','GCSE Biology - A*','GCSE English - A']),
-		'5': new Writing(milestone[6]+53*squareSize,ground-3.5*squareSize,13*squareSize,6*squareSize,'2018',['A-Level French - A - 86%','GCSE CS - A* - 96PUM']),
+		'3': new Writing(milestone[6]+13*squareSize,ground-1.5*squareSize,13*squareSize,6*squareSize,'2016 - First GCSE',['GCSE Maths - A* - 97.5%']),
+		'4': new Writing(milestone[6]+33*squareSize,ground-3*squareSize,13*squareSize,6*squareSize,'2017 - Most GCSEs',['FSMQ Maths - A - 90%','GCSE Physics - A*','GCSE Chemistry - A*','GCSE Biology - A*','GCSE English - A']),
+		'5': new Writing(milestone[6]+53*squareSize,ground-3.5*squareSize,13*squareSize,6*squareSize,'2018 - First A-Level',['A-Level French - A - 86%','GCSE CS - A* - 96PUM']),
 		'6': new Writing(milestone[7]+16*squareSize,ground-10.5*squareSize,21*squareSize,6*squareSize,'QUEEN ELIZABETH GRAMMAR SCHOOL',[],color(48, 111, 206)),
-		'7': new Writing(milestone[8]+32*squareSize,ground-1.5*squareSize,16*squareSize,4*squareSize,'Achieved:',["AS Computer Science - A - 92PUM"]),
-		'8': new Writing(milestone[8]+32*squareSize,ground+2*squareSize,16*squareSize,4*squareSize,'Predicted (Awarded in Y13):',["A-Level Mathematics - A*","A-Level Further Mathematics - A*","A-Level Physics - A*"]),
+		'7': new Writing(milestone[8]+32*squareSize,ground-1.5*squareSize,16*squareSize,4*squareSize,'Achieved AS:',["AS Computer Science - A - 92PUM"]),
+		'8': new Writing(milestone[9]+72*squareSize,ground-2*squareSize,16*squareSize,6*squareSize,'School A-Levels:',["A-Level Mathematics - A*","A-Level Further Mathematics - A*","A-Level Physics - A*"]),
+		'9': new Writing(milestone[10]+17*squareSize,ground-1.5*squareSize,16*squareSize,4*squareSize,'5th A-Level:',["Computer Science - A* - 95PUM"]),
 
 	};
 	typings = {
@@ -248,8 +258,10 @@ function setupAccessories(){
 		'17a': new Notice(milestone[8]+40*squareSize,noticeHeight,8*squareSize,4*squareSize,"End of Y12"),
 		'18': new Notice(milestone[9],noticeHeight,8*squareSize,4*squareSize,"Y13","Final school year"),
 // 		'18a': new Notice(milestone[9]+30*squareSize,noticeHeight,8*squareSize,4*squareSize,"Oxford Offer!","(MMathCompSci)"),
-		'18a': new Notice(milestone[9]+60*squareSize,noticeHeight,9*squareSize,4*squareSize,"A-Levels cancelled","(COVID-19)"),
-		'18b': new Notice(milestone[10],noticeHeight,8*squareSize,4*squareSize,'RIGHT NOW!', "You're all up to date!"),
+		'18a': new Notice(milestone[9]+50*squareSize,noticeHeight,9*squareSize,4*squareSize,"A-Levels cancelled","(COVID-19)"),
+		'18b': new Notice(milestone[9]+80*squareSize,noticeHeight,9*squareSize,4*squareSize,"A-Levels Results!"),
+		'19a': new Notice(milestone[10],noticeHeight,9*squareSize,4*squareSize,"First Year\nM+CS @ Oxford"),
+		'19b': new Notice(milestone[11],noticeHeight,8*squareSize,4*squareSize,'RIGHT NOW!', "You're all up to date!"),
 	};
 	milestones = {};
 	for (var i=0; i<milestone.length;i+=1){
@@ -260,7 +272,7 @@ function setupAccessories(){
 		}
 	}
 	specialClouds = {
-		'1' : new SpecialCloud(milestone[8]+17*squareSize,8*squareSize,9*squareSize,"Masters level project involving\nCloud Computing and Cryptocurrency\nthrough the departement of/nComputer Science.",14,color(245,245,245),color(185, 41, 59))
+		'1' : new SpecialCloud(milestone[8]+17*squareSize,8*squareSize,9*squareSize,"Work Experience: Masters level\nproject involving Cloud Computing\nand Cryptocurrency through the\ndepartement of Computer Science.",14,color(245,245,245),color(185, 41, 59))
 	};
 	waterDroplets = {
 		'1' : new WaterDroplet(milestone[5]+39*squareSize,ground-3*squareSize,10*squareSize,3*squareSize),
@@ -295,7 +307,7 @@ function setupAccessories(){
 	
 	coronaviruses = {};
 	for (var i=0; i<15; i+=1){
-		coronaviruses[str(i)] = new Coronavirus(milestone[9]+random(-5*squareSize,5*squareSize)+60*squareSize,random(0,ground),random(0.7*squareSize,2*squareSize));
+		coronaviruses[str(i)] = new Coronavirus(milestone[9]+random(-5*squareSize,5*squareSize)+50*squareSize,random(0,ground),random(0.7*squareSize,2*squareSize));
 	}
 	
 	monitors = {
@@ -316,6 +328,6 @@ function setupAccessories(){
 	};
 	
 	letters = {
-		'0': new Letter(milestone[9]+30*squareSize,noticeHeight,ground+3*squareSize,8*squareSize,5*squareSize,"Oxford Offer!","MMathCompSci     "),
+		'0': new Letter(milestone[9]+25*squareSize,noticeHeight,ground+3*squareSize,8*squareSize,5*squareSize,"Oxford Offer!","MMathCompSci     "),
 	}
 }

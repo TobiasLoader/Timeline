@@ -92,7 +92,6 @@ function draw() {
 		loaded = true;
 	}
 	if (loaded){
-		print('hello');
 		if (!browserMessage){
 			background(250, 249, 240);
 			fill(9, 168, 176);
